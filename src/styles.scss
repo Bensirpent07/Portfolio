@@ -1,23 +1,8 @@
-@use "bootstrap/scss/functions";
-@use "bootstrap/scss/mixins";
+@import "tailwindcss";
+@plugin "daisyui";
 
-// Global Styles
-body {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
-  }
-  
-// Headers - Inter
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
-}
+@import "primeicons/primeicons.css";
 
-.rfs-h1{
-    @include mixins.rfs(3rem);
-}
-
-.rfs-h2{
-    @include mixins.rfs(2.5rem);
-}
+// ************************
+// * Custom Styles *
+// ************************

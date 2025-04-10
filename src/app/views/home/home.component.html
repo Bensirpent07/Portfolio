@@ -1,37 +1,50 @@
 <app-navbar></app-navbar>
-<div id="hero" class="text-end py-5 position-relative text-bg-dark">
-    <div id="navbar-spacer" style="height: 61px"></div>
-    <div class="container py-5">
-        <div class="row text-center text-md-end d-flex justify-content-center">
-            <div class="col-9 col-md-4">
-                <img src="assets/images/hero-image.png" class="img-fluid" alt="Ben Kuhman" />
-            </div>
-            <div class="col-md-5 offset-md-1">
-                <h1 class="rfs-h1 pt-5 mt-5 mb-4">Full Stack Developer</h1>
-                <p class="lead">I specialize in building web applications with a focus on user experience and performance.</p>
-                <p class="lead pb-5 mb-5">Learn about Full-Stack</p>
-                <button class="btn btn-primary rounded-pill px-4">
-                    View Portfolio 
-                    <fa-icon [icon]="faArrowRight" class="ms-2"></fa-icon>
-                </button>
-            </div>
+<main id="main-container" class="py-10 px-20">
+  <section
+    class="hero min-h-screen"
+    style="background-image: url('/assets/images/abstract-background.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content text-neutral-content text-center relative">
+      <div class="max-w-screen-lg">
+        <img src="/assets/images/ben-kuhman-portrait.jpg" alt="Ben Kuhman" class="rounded-full w-48 h-48 mx-auto mb-5 shadow-lg shadow-black/50">
+        <h1 class="mb-5 text-5xl font-bold tracking-wide">Full Stack Developer.</h1>
+        <p class="mb-5 text-gray-200">
+          Bringing views to your business one line of code at a time. I am a full stack web developer with a passion for creating beautiful and functional websites. I specialize in front-end development, but I also have experience with back-end development and database management.
+        </p>
+        <div>
+          <a href="#" pButton class="p-button-rounded mx-2 hover:scale-105 transition-all duration-300">
+            Get In Touch
+            <span class="pi pi-send ms-4"></span>
+          </a>
+          <a href="#" pButton [text]="true" [raised]="true" severity="secondary" class="p-button-rounded mx-2 hover:scale-105 transition-all duration-300">
+            View My Work
+            <span class="pi pi-eye ms-4"></span>
+          </a>
         </div>
+      </div>
     </div>
-</div>
-<div class="container py-5 overflow-hidden" style="height: 500px;">
-    <div class="row py-5">
-        <div class="col-6">
-            <h2 class="rfs-h2">Mobile Friendly Designs</h2>
-            <p class="lead">I create responsive and user-friendly designs that look great on all devices.</p>
-            <p class="mb-0">Including mobile phones and tablets. With a focus on mobile-first development, I ensure that your website or application is optimized for a seamless mobile experience. Whether it's a simple and intuitive interface or a visually appealing design, I prioritize mobile responsiveness to enhance user engagement and satisfaction.</p>
-        </div>
-        <div class="col-4 offset-1 position-relative">
-            <img src="assets/images/phone-website.png" class="img-fluid position-absolute" alt="Phone displaying a website" />
-        </div>
+    <div class="absolute bottom-8 animate-bounce">
+      <i class="pi pi-angle-down text-white text-2xl"></i>
     </div>
-</div>
-<div class="container-fluid bg-dark">
-    <div class="row py-5">
-
+  </section>
+  <section class="w-full bg-base-100 p-10 text-center overflow-hidden py-28">
+    <p class="text-lg">Proficient with multiple languages and frameworks including...</p>
+    <h1 id="typeit-element" class="text-5xl font-bold tracking-wide text-center my-10"></h1>
+<!--    Scrolling logo strip -->
+    <div class="flex justify-center mt-20 relative w-full h-32">
+      <div [ngClass]="{ 'dark': isDarkMode }" class="scroll-carousel absolute h-full w-max flex left-0">
+        <ng-container *ngFor="let i of [1, 2]">
+          <img src="/assets/images/tech-logos/angular.svg" [ngClass]="{ 'active-logo': activeLogo == 'angular'}" class="h-full inline-block me-16" />
+          <img src="/assets/images/tech-logos/css.svg" [ngClass]="{ 'active-logo': activeLogo == 'css'}" class="h-full inline-block me-16" />
+          <img src="/assets/images/tech-logos/net.svg" [ngClass]="{ 'active-logo': activeLogo == 'net'}" class="h-full inline-block me-16" />
+          <img src="/assets/images/tech-logos/html.svg" [ngClass]="{ 'active-logo': activeLogo == 'html'}" class="h-full inline-block me-16" />
+          <img src="/assets/images/tech-logos/javascript.svg" [ngClass]="{ 'active-logo': activeLogo == 'javascript'}" class="h-full inline-block me-16" />
+          <img src="/assets/images/tech-logos/mysql.svg" [ngClass]="{ 'active-logo': activeLogo == 'mysql'}" class="h-full inline-block me-16" />
+          <img src="/assets/images/tech-logos/primeng.svg" [ngClass]="{ 'active-logo': activeLogo == 'primeng'}" class="h-full inline-block me-16" />
+          <img src="/assets/images/tech-logos/tailwindcss.svg" [ngClass]="{ 'active-logo': activeLogo == 'tailwindcss'}" class="h-full inline-block me-16" />
+          <img src="/assets/images/tech-logos/typescript.svg" [ngClass]="{ 'active-logo': activeLogo == 'typescript'}" class="h-full inline-block me-16" />
+        </ng-container>
+      </div>
     </div>
-</div>
+  </section>
+</main>

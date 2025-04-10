@@ -1,24 +1,35 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ButtonModule} from 'primeng/button';
+import {RouterLink, RouterLinkActive} from '@angular/router';
+import {NgForOf} from '@angular/common';
+import {FaIconComponent} from '@fortawesome/angular-fontawesome';
+import {faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import {Menu} from 'primeng/menu';
+import {ToggleSwitch} from 'primeng/toggleswitch';
+import {FormsModule} from '@angular/forms';
+import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterModule, CommonModule],
+  standalone: true,
+  imports: [ButtonModule, RouterLink, NgForOf, RouterLinkActive, FaIconComponent, Menu, ToggleSwitch, FormsModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
-  @ViewChild('navbar') navbar!: ElementRef;
-  isScrolled: boolean = false;
+export class NavbarComponent implements OnInit{
+  isDarkMode = false;
+  faSun = faSun;
+  faMoon = faMoon;
 
+  constructor(private themeService: ThemeService) {}
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const scrolled = window.scrollY > 0;
-    if (scrolled !== this.isScrolled) {
-      this.isScrolled = scrolled;
-      // this.cdr.detectChanges(); // Ensure UI updates properly
-    }
+  ngOnInit() {
+    this.themeService.isDarkMode$.subscribe((isDarkMode: boolean) => {
+      this.isDarkMode = isDarkMode;
+    });
+  }
+
+  toggleDarkMode() {
+    this.themeService.setDarkMode(this.isDarkMode);
   }
 }

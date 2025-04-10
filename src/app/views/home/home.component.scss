@@ -1,3 +1,38 @@
-div#hero{
-    background: linear-gradient(90deg, hsla(205, 46%, 10%, 1) 0%, hsla(191, 28%, 23%, 1) 50%, hsla(207, 41%, 27%, 1) 100%);
+main#main-container{
+  background-image: url('/assets/images/abstract-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.scroll-carousel{
+  animation: scroll 20s linear infinite;
+
+  &:hover{
+    animation-play-state: paused;
+  }
+}
+
+.scroll-carousel img{
+  opacity: 0.25;
+}
+
+.scroll-carousel img.active-logo{
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.scroll-carousel.dark img{
+  filter: invert(1);
+}
+
+@keyframes scroll{
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(-50%);
+  }
 }
