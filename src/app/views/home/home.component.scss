@@ -1,4 +1,4 @@
-main#main-container{
+main#main-container {
   background-image: url('/assets/images/abstract-background.jpg');
   background-size: cover;
   background-position: center;
@@ -6,33 +6,55 @@ main#main-container{
   background-attachment: fixed;
 }
 
-.scroll-carousel{
+.scroll-carousel {
   animation: scroll 20s linear infinite;
 
-  &:hover{
+  &:hover {
     animation-play-state: paused;
   }
 }
 
-.scroll-carousel img{
+.scroll-carousel img {
   opacity: 0.25;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-.scroll-carousel img.active-logo{
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+.scroll-carousel img.active-logo {
   opacity: 1;
   transform: scale(1.2);
 }
 
-.scroll-carousel.dark img{
+.scroll-carousel.dark img {
   filter: invert(1);
 }
 
-@keyframes scroll{
-  0%{
+.bg-gradient {
+  background-color: #FEE140;
+  background-image: linear-gradient(90deg, #355C7D 0%, #6C5B7B 50%, #C06C84 100%);
+}
+
+.icon-bounce:hover {
+  fa-icon {
+    animation: bounce 1s infinite;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  50% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+}
+
+@keyframes scroll {
+  0% {
     transform: translateX(0);
   }
-  100%{
+  100% {
     transform: translateX(-50%);
   }
 }

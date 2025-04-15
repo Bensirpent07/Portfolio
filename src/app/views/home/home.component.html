@@ -27,24 +27,57 @@
       <i class="pi pi-angle-down text-white text-2xl"></i>
     </div>
   </section>
-  <section class="w-full bg-base-100 p-10 text-center overflow-hidden py-28">
+  <section class="w-full bg-base-300 p-10 text-center overflow-hidden py-28">
     <p class="text-lg">Proficient with multiple languages and frameworks including...</p>
     <h1 id="typeit-element" class="text-5xl font-bold tracking-wide text-center my-10"></h1>
-<!--    Scrolling logo strip -->
     <div class="flex justify-center mt-20 relative w-full h-32">
       <div [ngClass]="{ 'dark': isDarkMode }" class="scroll-carousel absolute h-full w-max flex left-0">
         <ng-container *ngFor="let i of [1, 2]">
-          <img src="/assets/images/tech-logos/angular.svg" [ngClass]="{ 'active-logo': activeLogo == 'angular'}" class="h-full inline-block me-16" />
-          <img src="/assets/images/tech-logos/css.svg" [ngClass]="{ 'active-logo': activeLogo == 'css'}" class="h-full inline-block me-16" />
-          <img src="/assets/images/tech-logos/net.svg" [ngClass]="{ 'active-logo': activeLogo == 'net'}" class="h-full inline-block me-16" />
-          <img src="/assets/images/tech-logos/html.svg" [ngClass]="{ 'active-logo': activeLogo == 'html'}" class="h-full inline-block me-16" />
-          <img src="/assets/images/tech-logos/javascript.svg" [ngClass]="{ 'active-logo': activeLogo == 'javascript'}" class="h-full inline-block me-16" />
-          <img src="/assets/images/tech-logos/mysql.svg" [ngClass]="{ 'active-logo': activeLogo == 'mysql'}" class="h-full inline-block me-16" />
-          <img src="/assets/images/tech-logos/primeng.svg" [ngClass]="{ 'active-logo': activeLogo == 'primeng'}" class="h-full inline-block me-16" />
-          <img src="/assets/images/tech-logos/tailwindcss.svg" [ngClass]="{ 'active-logo': activeLogo == 'tailwindcss'}" class="h-full inline-block me-16" />
-          <img src="/assets/images/tech-logos/typescript.svg" [ngClass]="{ 'active-logo': activeLogo == 'typescript'}" class="h-full inline-block me-16" />
+          <img alt="Angular Logo" src="/assets/images/tech-logos/angular.svg" [ngClass]="{ 'active-logo': activeLogo == 'angular'}" class="h-full inline-block me-16" />
+          <img alt="CSS Logo" src="/assets/images/tech-logos/css.svg" [ngClass]="{ 'active-logo': activeLogo == 'css'}" class="h-full inline-block me-16" />
+          <img alt=".NET Logo" src="/assets/images/tech-logos/net.svg" [ngClass]="{ 'active-logo': activeLogo == 'net'}" class="h-full inline-block me-16" />
+          <img alt="HTML Logo" src="/assets/images/tech-logos/html.svg" [ngClass]="{ 'active-logo': activeLogo == 'html'}" class="h-full inline-block me-16" />
+          <img alt="Javascript Logo" src="/assets/images/tech-logos/javascript.svg" [ngClass]="{ 'active-logo': activeLogo == 'javascript'}" class="h-full inline-block me-16" />
+          <img alt="MYSQL Logo" src="/assets/images/tech-logos/mysql.svg" [ngClass]="{ 'active-logo': activeLogo == 'mysql'}" class="h-full inline-block me-16" />
+          <img alt="PrimeNG Logo" src="/assets/images/tech-logos/primeng.svg" [ngClass]="{ 'active-logo': activeLogo == 'primeng'}" class="h-full inline-block me-16" />
+          <img alt="TailwindCSS Logo" src="/assets/images/tech-logos/tailwindcss.svg" [ngClass]="{ 'active-logo': activeLogo == 'tailwindcss'}" class="h-full inline-block me-16" />
+          <img alt="Typescript Logo" src="/assets/images/tech-logos/typescript.svg" [ngClass]="{ 'active-logo': activeLogo == 'typescript'}" class="h-full inline-block me-16" />
         </ng-container>
       </div>
     </div>
+  </section>
+  <section id="services" class="flex flex-col items-center py-10 bg-gradient text-gray-200">
+    <h2 class="text-3xl mb-4 font-bold tracking-wide">What I do</h2>
+    <p class="text-lg max-w-screen-lg text-center mb-4 px-14">I am a full stack web developer with a passion for creating beautiful and functional websites. I specialize in front-end development, but I also have experience with back-end development and database management.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 max-w-screen-xl gap-5 px-5">
+      <div class="card max-w-96 bg-blue-300 text-gray-800 shadow-xl my-2 icon-bounce">
+        <div class="card-body">
+          <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faAngular"></fa-icon> Web App Development</h2>
+          <p>Angular is a platform for building mobile and desktop web applications.</p>
+        </div>
+      </div>
+      <div class="card max-w-96 bg-emerald-300 text-gray-800 shadow-xl my-2 icon-bounce">
+        <div class="card-body">
+          <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faMicrosoft"></fa-icon> API Design</h2>
+          <p>.NET is a free, cross-platform, open-source developer platform for building many different types of applications.</p>
+        </div>
+      </div>
+      <div class="card max-w-96 bg-rose-300 text-gray-800 shadow-xl my-2 icon-bounce">
+        <div class="card-body">
+          <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faDatabase"></fa-icon>Database Management</h2>
+          <p>JavaScript is a programming language that conforms to the ECMAScript specification.</p>
+        </div>
+      </div>
+      <div class="card max-w-96 bg-base-100 text-base-content shadow-xl my-2 animate icon-bounce">
+        <div class="card-body">
+          <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faFigma"></fa-icon>UI/UX</h2>
+          <p>JavaScript is a programming language that conforms to the ECMAScript specification.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#" pButton class="p-button-rounded mx-2 mt-10 hover:scale-105 transition-all duration-300">
+      Contact Me
+      <span class="pi pi-send ms-4"></span>
+    </a>
   </section>
 </main>

@@ -6,17 +6,24 @@ import TypeIt from 'typeit';
 import {NgClass, NgForOf} from '@angular/common';
 import {ThemeService} from '../../services/theme.service';
 import {Character} from 'typeit/dist/types';
+import {FaIconComponent, IconDefinition} from '@fortawesome/angular-fontawesome';
+import {faAngular, faFigma, faMicrosoft} from '@fortawesome/free-brands-svg-icons';
+import { faDatabase } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, ButtonModule, RouterLink, NgForOf, NgClass],
+  imports: [NavbarComponent, ButtonModule, RouterLink, NgForOf, NgClass, FaIconComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements AfterViewInit, OnInit{
   isDarkMode: boolean = false;
   activeLogo: string = '';
+  faAngular: IconDefinition = faAngular;
+  faMicrosoft: IconDefinition = faMicrosoft;
+  faDatabase: IconDefinition = faDatabase;
+  faFigma: IconDefinition = faFigma;
 
   constructor(private themeService: ThemeService) {}
 
