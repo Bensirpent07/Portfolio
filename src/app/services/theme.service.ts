@@ -5,6 +5,8 @@ import {BehaviorSubject} from 'rxjs';
   providedIn: 'root'
 })
 export class ThemeService {
+  private darkTheme: string = 'sunset';
+  private lightTheme: string = 'emerald';
   private darkModeSubject = new BehaviorSubject<boolean>(false);
   isDarkMode$ = this.darkModeSubject.asObservable();
 
@@ -23,12 +25,12 @@ export class ThemeService {
     const element = document.documentElement;
     if (isDarkMode) {
       element.classList.add('dark-mode');
-      element.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
+      element.setAttribute('data-theme', this.darkTheme);
+      localStorage.setItem('theme', this.darkTheme);
     } else {
       element.classList.remove('dark-mode');
-      element.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
+      element.setAttribute('data-theme', this.lightTheme);
+      localStorage.setItem('theme', this.lightTheme);
     }
   }
 }
