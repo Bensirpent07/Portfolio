@@ -1,18 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {ButtonModule} from 'primeng/button';
-import {RouterLink, RouterLinkActive} from '@angular/router';
-import {NgForOf} from '@angular/common';
+import {RouterLink} from '@angular/router';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import {Menu} from 'primeng/menu';
-import {ToggleSwitch} from 'primeng/toggleswitch';
 import {FormsModule} from '@angular/forms';
 import {ThemeService} from '../../services/theme.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ButtonModule, RouterLink, NgForOf, RouterLinkActive, FaIconComponent, Menu, ToggleSwitch, FormsModule],
+  imports: [RouterLink, FaIconComponent, FormsModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -30,6 +26,6 @@ export class NavbarComponent implements OnInit{
   }
 
   toggleDarkMode() {
-    this.themeService.setDarkMode(this.isDarkMode);
+    this.themeService.setDarkMode(!this.isDarkMode);
   }
 }

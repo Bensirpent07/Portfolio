@@ -1,19 +1,34 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
-import { ButtonModule } from 'primeng/button';
-import { RouterLink } from '@angular/router';
 import TypeIt from 'typeit';
-import {NgClass, NgForOf} from '@angular/common';
+import {NgClass, NgForOf, NgOptimizedImage} from '@angular/common';
 import {ThemeService} from '../../services/theme.service';
 import {Character} from 'typeit/dist/types';
 import {FaIconComponent, IconDefinition} from '@fortawesome/angular-fontawesome';
-import {faAngular, faFigma, faMicrosoft} from '@fortawesome/free-brands-svg-icons';
-import { faDatabase } from '@fortawesome/free-solid-svg-icons';
+import {faAngular, faFigma, faGithub, faLinkedin, faMicrosoft} from '@fortawesome/free-brands-svg-icons';
+import {
+  faBullhorn,
+  faChartLine,
+  faDatabase,
+  faDollarSign,
+  faPaintBrush,
+  faSearch,
+  faStore
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faChartBar,
+  faCommentDots,
+  faEye,
+  faHandshake,
+  faMessage,
+  faPaperPlane
+} from '@fortawesome/free-regular-svg-icons';
+import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, ButtonModule, RouterLink, NgForOf, NgClass, FaIconComponent],
+  imports: [NavbarComponent, NgForOf, NgClass, FaIconComponent, NgOptimizedImage],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -24,6 +39,11 @@ export class HomeComponent implements AfterViewInit, OnInit{
   faMicrosoft: IconDefinition = faMicrosoft;
   faDatabase: IconDefinition = faDatabase;
   faFigma: IconDefinition = faFigma;
+  faPaperPlane: IconDefinition = faPaperPlane;
+  faEye: IconDefinition = faEye;
+  faHandshake: IconDefinition = faHandshake;
+  faPaintBrush: IconDefinition = faPaintBrush;
+  faBullhorn: IconDefinition = faBullhorn;
 
   constructor(private themeService: ThemeService) {}
 
@@ -58,7 +78,6 @@ export class HomeComponent implements AfterViewInit, OnInit{
       nextStringDelay: 4000,
       afterString: (characters: Character[]) => {
         this.activeLogo = characters.toString().toLowerCase().replace(/\W/g, '');
-        console.log(this.activeLogo);
       }
     })
     instance.go();
@@ -71,4 +90,15 @@ export class HomeComponent implements AfterViewInit, OnInit{
     }
     return array;
   }
+
+  protected readonly faSearch = faSearch;
+  protected readonly faStore = faStore;
+  protected readonly faChartLine = faChartLine;
+  protected readonly faDollarSign = faDollarSign;
+  protected readonly faChartBar = faChartBar;
+  protected readonly faCommentDots = faCommentDots;
+  protected readonly faMessage = faMessage;
+  protected readonly faHeart = faHeart;
+  protected readonly faGithub = faGithub;
+  protected readonly faLinkedin = faLinkedin;
 }

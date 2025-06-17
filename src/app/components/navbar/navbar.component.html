@@ -12,7 +12,7 @@
     </div>
     <div class="navbar-end flex items-center">
       <fa-icon [icon]="faSun"></fa-icon>
-      <p-toggle-switch [(ngModel)]="isDarkMode" class="flex mx-3" (change)="toggleDarkMode()"></p-toggle-switch>
+      <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode()" class="toggle bg-white mx-4" />
       <fa-icon [icon]="faMoon"></fa-icon>
     </div>
   </div>
