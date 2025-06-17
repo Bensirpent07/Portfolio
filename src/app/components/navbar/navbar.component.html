@@ -1,19 +1,21 @@
-<nav id="navbar" class="fixed w-full text-white backdrop-blur-lg z-10">
-  <div class="navbar container mx-auto">
+<nav class="fixed w-full text-base-content bg-base-100/70 backdrop-blur-lg z-10">
+  <div class="navbar max-w-7xl mx-auto">
     <div class="navbar-start">
-      <a routerLink="/">Ben Kuhman</a>
+      <a class="btn btn-ghost normal-case text-xl" routerLink="/">
+        Ben Kuhman
+      </a>
     </div>
     <div class="navbar-center">
-      <ul class="menu menu-horizontal">
-        <li><a routerLink="/">Home</a></li>
+      <ul class="menu menu-horizontal gap-2">
+        <li><a routerLink="/" routerLinkActive="menu-active">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="navbar-end flex items-center">
-      <fa-icon [icon]="faSun"></fa-icon>
-      <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode()" class="toggle bg-white mx-4" />
-      <fa-icon [icon]="faMoon"></fa-icon>
+    <div class="navbar-end flex items-center me-4">
+      <fa-icon class="text-lg" [icon]="faSun"></fa-icon>
+      <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode()" class="toggle bg-white mx-2" />
+      <fa-icon class="text-lg" [icon]="faMoon"></fa-icon>
     </div>
   </div>
 </nav>
