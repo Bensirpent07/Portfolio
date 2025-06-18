@@ -42,7 +42,6 @@ export class HomeComponent implements AfterViewInit, OnInit{
   faPaperPlane: IconDefinition = faPaperPlane;
   faEye: IconDefinition = faEye;
   faHandshake: IconDefinition = faHandshake;
-  faPaintBrush: IconDefinition = faPaintBrush;
   faBullhorn: IconDefinition = faBullhorn;
 
   constructor(private themeService: ThemeService) {}

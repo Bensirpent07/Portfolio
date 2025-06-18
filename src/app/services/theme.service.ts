@@ -13,7 +13,7 @@ export class ThemeService {
 
   constructor() {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    if (savedTheme === this.darkTheme) {
       this.setDarkMode(true);
     } else {
       this.setDarkMode(false);

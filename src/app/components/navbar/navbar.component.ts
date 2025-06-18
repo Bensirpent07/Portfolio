@@ -4,12 +4,11 @@ import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {ThemeService} from '../../services/theme.service';
 import {faMoon, faSun} from '@fortawesome/free-regular-svg-icons';
-import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, FaIconComponent, FormsModule, RouterLinkActive, NgOptimizedImage],
+  imports: [RouterLink, FaIconComponent, FormsModule, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
