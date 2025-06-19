@@ -1,4 +1,4 @@
-<div class="hero bg-base-100 pt-24">
+<div class="hero pt-24">
   <div class="hero-content text-center">
     <div class="max-w-md">
       <h1 class="text-5xl font-bold">About Me</h1>
@@ -6,28 +6,107 @@
     </div>
   </div>
 </div>
-<div class="container bg-base-100 max-w-6xl mt-12 mx-auto flex justify-around gap-12">
-  <div class="card bg-base-200 w-96 shadow-lg">
+<div class="container bg-base-100 max-w-6xl mt-12 mx-auto flex max-md:flex-col justify-around gap-12 px-5">
+  <div class="card bg-base-200 sm:w-96 shadow-lg mx-auto">
     <figure>
       <img src="assets/images/ben-kuhman-portrait.jpg" alt="Ben Kuhman">
     </figure>
     <div class="card-body">
-      <h3 class="card-title">Ben Kuhman</h3>
-      <p>Software Engineer</p>
-      <p>Fullstack software engineer of 10 years.</p>
-      <div class="flex">
-        <fa-icon [icon]="faLinkedin"></fa-icon>
-        <fa-icon [icon]="faGithub"></fa-icon>
+      <div>
+        <h3 class="card-title">Ben Kuhman</h3>
+        <p class="italic">Software Engineer / AI Consultant</p>
+      </div>
+      <p>Empowering business growth with 10+ years of full-stack web expertise.</p>
+      <div class="flex text-2xl gap-4">
+        <a class="hover:text-secondary transition-colors" href="https://www.linkedin.com/in/ben-kuhman-7773b4141" target="_blank">
+          <fa-icon [icon]="faLinkedin"></fa-icon>
+        </a>
+        <a class="hover:text-secondary transition-colors" href="https://github.com/Bensirpent07" target="_blank">
+          <fa-icon [icon]="faGithub"></fa-icon>
+        </a>
       </div>
     </div>
   </div>
   <div class="flex-1">
     <div class="prose prose-indigo max-w-none">
-      <h2>Full-Stack Developer</h2>
-      <h3 class="text-primary">Web Marketing</h3>
+      <h2 class="mb-2">Full-Stack Developer</h2>
+      <div class="flex flex-wrap gap-2">
+        <div class="badge badge-accent badge-soft">HTML</div>
+        <div class="badge badge-accent badge-soft">CSS</div>
+        <div class="badge badge-accent badge-soft">JavaScript</div>
+        <div class="badge badge-accent badge-soft">TypeScript</div>
+        <div class="badge badge-accent badge-soft">Angular</div>
+        <div class="badge badge-accent badge-soft">C#</div>
+        <div class="badge badge-accent badge-soft">.NET</div>
+        <div class="badge badge-accent badge-soft">MSSQL</div>
+        <div class="badge badge-accent badge-soft">MySQL</div>
+      </div>
+      <h3 class="text-primary mt-3">Web Marketing</h3>
       <p>I have much experience in developing flashy web marketing sites for businesses including photography, landscaping, event management, and more. There is no project that intimidates me and I’m willing to explore and deploy many different styles of web practices to fit your needs.</p>
       <h3 class="text-primary">Business Tools</h3>
       <p>I also have much experience in web application development. I have built complex business tools that hinge on relational databases to calculate and accurately portray data that drives major business decisions and processes. I am confident in my work and that you will be provided with accurate and reliable data.</p>
     </div>
+  </div>
+</div>
+<div class="container mx-auto my-24 px-5">
+  <h2 class="text-3xl font-bold text-center mt-12 mb-6">Experience</h2>
+  <p class="text-center mb-12">Here is a brief overview of my professional journey, showcasing my roles and contributions in various organizations.</p>
+  <ul class="timeline timeline-vertical timeline-snap-icon max-md:timeline-compact max-w-5xl mx-auto text-lg">
+    <li>
+      <div class="timeline-middle">
+        <fa-icon [icon]="faCheckCircle"></fa-icon>
+      </div>
+      <div class="timeline-start timeline-box md:text-end mb-10">
+        <time>Jan 2024 - Present</time>
+        <div class="text-lg font-bold text-secondary">
+          <fa-icon class="me-2" [icon]="faRocket"></fa-icon>
+          NASA KLXSIII
+        </div>
+        <div class="text-md italic mb-2">Software Engineer</div>
+        <p>
+          I am currently working as a software engineer, focusing on full-stack development and AI consulting. My role involves building scalable web applications and integrating AI solutions to enhance user experiences.
+        </p>
+      </div>
+      <hr />
+    </li>
+    <li>
+      <div class="timeline-middle">
+        <fa-icon [icon]="faCheckCircle"></fa-icon>
+      </div>
+      <div class="timeline-end timeline-box max-w-xl mb-10">
+        <time>Jan 2018 - Jan 2024</time>
+        <div class="text-lg font-bold text-secondary">
+          United States Air Force
+          <fa-icon class="ms-2" [icon]="faJetFighterUp"></fa-icon>
+        </div>
+        <div class="text-md italic mb-2">In-Flight Refueler (Boom Operator)</div>
+        <p>
+          Served as an in-flight refueler (Boom Operator) responsible for safely transferring fuel between aircraft during flight operations. Developed strong teamwork, communication, and technical skills while supporting critical missions worldwide.
+        </p>
+      </div>
+      <hr />
+    </li>
+    <li>
+      <div class="timeline-middle">
+        <fa-icon [icon]="faCheckCircle"></fa-icon>
+      </div>
+      <div class="timeline-start timeline-box md:text-end">
+        <time>Mar 2017 - Jan 2018</time>
+        <div class="text-lg font-bold text-secondary">
+          <fa-icon class="me-2" [icon]="faCode"></fa-icon>
+          Freelancer.com
+        </div>
+        <div class="text- italic mb-2">Software Engineer</div>
+        <p>
+          As a freelancer, I worked on various projects, including web applications and marketing sites. I collaborated with clients to understand their needs and delivered high-quality solutions that met their requirements.
+        </p>
+      </div>
+      <hr />
+    </li>
+  </ul>
+  <div class="text-center mt-12">
+    <a href="assets/documents/ben-kuhman-resume.pdf" class="btn btn-primary" download>
+      <fa-icon [icon]="faDownload"></fa-icon> Download Full Resume
+    </a>
   </div>
 </div>
