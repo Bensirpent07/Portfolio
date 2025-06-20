@@ -1,19 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, signal} from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {ThemeService} from '../../services/theme.service';
 import {faMoon, faSun} from '@fortawesome/free-regular-svg-icons';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, FaIconComponent, FormsModule, RouterLinkActive],
+  imports: [RouterLink, FaIconComponent, FormsModule, RouterLinkActive, NgClass],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit{
   isDarkMode = false;
+  isScrolled = signal(false);
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled.set(window.scrollY > 0);
+  }
 
   constructor(private themeService: ThemeService) {}
 

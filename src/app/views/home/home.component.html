@@ -144,25 +144,25 @@
       </div>
     </div>
   </section>
-  <section class="hero bg-base-200 text-base-content py-5">
-    <div class="hero-content px-10 flex-col md:flex-row">
-      <div class="text-center md:text-start mb-6 md:mb-0">
+  <section class="hero bg-base-100 py-5">
+    <div class="hero-content px-10 flex-col md:flex-row gap-16 w-full max-w-7xl">
+      <div class="text-center md:text-start mb-6">
         <h3 class="text-2xl font-bold mb-3">Let's get going</h3>
-        <p class="text-lg">Ready to take your business to the next level? Let's build something great together.</p>
+        <p class="text-lg">
+          Ready to take your business to the next level?<br>
+          Let's build something great together.
+        </p>
       </div>
-      <div class="card bg-base-300 shadow-xl w-full max-w-sm">
-        <div class="card-body">
-          <fieldset class="fieldset">
-            <label class="label">E-Mail</label>
-            <input type="email" placeholder="Your email address" class="input w-full" />
-            <label class="label">Message</label>
-            <textarea placeholder="Your message" class="textarea w-full"></textarea>
-            <div class="form-control mt-6">
-              <button class="btn btn-primary">Send Message <fa-icon [icon]="faPaperPlane"></fa-icon></button>
-            </div>
-          </fieldset>
+      <fieldset class="fieldset border-base-300 rounded-box w-full max-w-sm border p-4">
+        <legend class="fieldset-legend">Contact Form</legend>
+        <label class="label">E-Mail</label>
+        <input type="email" placeholder="Your email address" class="input w-full" />
+        <label class="label">Message</label>
+        <textarea placeholder="Your message" class="textarea w-full"></textarea>
+        <div class="form-control mt-6">
+          <button class="btn btn-primary">Send Message <fa-icon [icon]="faPaperPlane"></fa-icon></button>
         </div>
-      </div>
+      </fieldset>
     </div>
   </section>
   <footer class="footer sm:footer-horizontal footer-center bg-base-200 text-base-content px-4 py-10">
