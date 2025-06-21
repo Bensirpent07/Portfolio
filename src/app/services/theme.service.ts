@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {afterNextRender, Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
@@ -12,12 +12,14 @@ export class ThemeService {
 
 
   constructor() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === this.darkTheme) {
-      this.setDarkMode(true);
-    } else {
-      this.setDarkMode(false);
-    }
+    afterNextRender(() =>{
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === this.darkTheme) {
+        this.setDarkMode(true);
+      } else {
+        this.setDarkMode(false);
+      }
+    });
   }
 
   setDarkMode(isDarkMode: boolean) {
@@ -26,11 +28,15 @@ export class ThemeService {
     if (isDarkMode) {
       element.classList.add('dark-mode');
       element.setAttribute('data-theme', this.darkTheme);
-      localStorage.setItem('theme', this.darkTheme);
+      afterNextRender(() => {
+        localStorage.setItem('theme', this.darkTheme);
+      });
     } else {
       element.classList.remove('dark-mode');
       element.setAttribute('data-theme', this.lightTheme);
-      localStorage.setItem('theme', this.lightTheme);
+      afterNextRender(() => {
+        localStorage.setItem('theme', this.lightTheme);
+      });
     }
   }
 }
