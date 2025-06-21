@@ -153,16 +153,27 @@
           Let's build something great together.
         </p>
       </div>
-      <fieldset class="fieldset border-base-300 rounded-box w-full max-w-sm border p-4">
-        <legend class="fieldset-legend">Contact Form</legend>
-        <label class="label">E-Mail</label>
-        <input type="email" placeholder="Your email address" class="input w-full" />
-        <label class="label">Message</label>
-        <textarea placeholder="Your message" class="textarea w-full"></textarea>
-        <div class="form-control mt-6">
-          <button class="btn btn-primary">Send Message <fa-icon [icon]="faPaperPlane"></fa-icon></button>
-        </div>
-      </fieldset>
+      <form class="w-full max-w-sm" (submit)="onFormSubmit($event)">
+        <fieldset class="fieldset border-base-300 rounded-box border p-4">
+          <legend class="fieldset-legend">Contact Form</legend>
+          <label class="label">Name</label>
+          <input name="name" type="text" placeholder="Your name" class="input validator w-full" required />
+          <div class="validator-hint hidden">Enter valid name</div>
+          <label class="label">E-Mail</label>
+          <input name="email" type="email" placeholder="Your email address" class="input validator w-full" required />
+          <div class="validator-hint hidden">Enter valid email address</div>
+          <label class="label">Message</label>
+          <textarea name="message" placeholder="Your message" class="textarea validator w-full" required></textarea>
+          <div class="validator-hint hidden">Enter valid message</div>
+          <div class="form-control mt-6">
+            <button type="submit" class="btn btn-primary" [disabled]="isProcessing()">
+              Send Message
+              <span *ngIf="isProcessing()" class="loading loading-infinity loading-lg"></span>
+              <fa-icon *ngIf="!isProcessing()" [icon]="faPaperPlane"></fa-icon>
+            </button>
+          </div>
+        </fieldset>
+      </form>
     </div>
   </section>
   <footer class="footer sm:footer-horizontal footer-center bg-base-200 text-base-content px-4 py-10">

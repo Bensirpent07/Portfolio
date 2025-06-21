@@ -1,2 +1,18 @@
 <app-navbar></app-navbar>
 <router-outlet />
+<div class="toast-container">
+  <div
+    *ngFor="let toast of toastService.toasts$ | async"
+    class="toast toast-center"
+  >
+    <div class="alert" [ngClass]="{
+      'alert-success': toast.type === 'success',
+      'alert-error': toast.type === 'error',
+      'alert-warning': toast.type === 'warning',
+      'alert-info': toast.type === 'info'
+    }">
+      <fa-icon *ngIf="toast.icon" [icon]="toast.icon" class="text-lg me-2"></fa-icon>
+      {{ toast.message }}
+    </div>
+  </div>
+</div>

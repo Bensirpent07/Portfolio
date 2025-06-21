@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NavbarComponent} from '../../components/navbar/navbar.component';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import {faCheckCircle, faCode, faDownload, faJetFighterUp, faRocket} from '@fortawesome/free-solid-svg-icons';
@@ -7,7 +6,6 @@ import {faCheckCircle, faCode, faDownload, faJetFighterUp, faRocket} from '@fort
 @Component({
   selector: 'app-about',
   imports: [
-    NavbarComponent,
     FaIconComponent
   ],
   templateUrl: './about.component.html',

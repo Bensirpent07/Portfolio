@@ -1,40 +1,35 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import { NavbarComponent } from "../../components/navbar/navbar.component";
+import {AfterViewInit, Component, OnInit, signal} from '@angular/core';
 import TypeIt from 'typeit';
-import {NgClass, NgForOf, NgOptimizedImage} from '@angular/common';
+import {NgClass, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {ThemeService} from '../../services/theme.service';
 import {Character} from 'typeit/dist/types';
 import {FaIconComponent, IconDefinition} from '@fortawesome/angular-fontawesome';
 import {faAngular, faFigma, faGithub, faLinkedin, faMicrosoft} from '@fortawesome/free-brands-svg-icons';
 import {
-  faBullhorn,
-  faChartLine,
-  faDatabase,
-  faDollarSign,
-  faPaintBrush,
-  faSearch,
-  faStore
+  faBullhorn, faDatabase
 } from '@fortawesome/free-solid-svg-icons';
 import {
-  faChartBar,
-  faCommentDots,
+  faChartBar, faCircleCheck, faCircleXmark,
   faEye,
   faHandshake,
-  faMessage,
   faPaperPlane
 } from '@fortawesome/free-regular-svg-icons';
 import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
+import {EmailjsService} from '../../services/emailjs.service';
+import {Toast, ToastService} from '../../services/toast.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, NgForOf, NgClass, FaIconComponent, NgOptimizedImage],
+  imports: [NgForOf, NgClass, FaIconComponent, NgOptimizedImage, NgIf],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements AfterViewInit, OnInit{
   isDarkMode: boolean = false;
   activeLogo: string = '';
+  isProcessing = signal(false);
+
   faAngular: IconDefinition = faAngular;
   faMicrosoft: IconDefinition = faMicrosoft;
   faDatabase: IconDefinition = faDatabase;
@@ -44,7 +39,11 @@ export class HomeComponent implements AfterViewInit, OnInit{
   faHandshake: IconDefinition = faHandshake;
   faBullhorn: IconDefinition = faBullhorn;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private emailJs: EmailjsService,
+    private toastsService: ToastService
+  ) {}
 
   ngOnInit() {
     this.themeService.isDarkMode$.subscribe((isDarkMode: boolean) => {
@@ -82,6 +81,40 @@ export class HomeComponent implements AfterViewInit, OnInit{
     instance.go();
   }
 
+  onFormSubmit(event: Event){
+    this.isProcessing.set(true);
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+
+    let timeInput = document.createElement('input');
+    timeInput.type = 'hidden';
+    timeInput.name = 'time';
+    form.appendChild(timeInput);
+    timeInput.value = new Date().toLocaleString('en-US', {
+      year:   'numeric',
+      month:  'long',
+      day:    'numeric',
+      hour:   '2-digit',
+      minute: '2-digit'
+    });
+
+    this.emailJs.sendForm('service_ozq7f0v', 'template_mtol3gb', form)
+      .then(result => {
+        this.toastsService.addToast('Email sent successfully!', 'success', {
+          icon: faCircleCheck
+        })
+        this.isProcessing.set(false);
+      })
+      .catch(error => {
+        console.error('Error sending email:', error);
+        this.toastsService.addToast('Failed to send email. Please try again later.', 'error', {
+          duration: 5000,
+          icon: faCircleXmark
+        });
+        this.isProcessing.set(false);
+      });
+  }
+
   private shuffleStrings(array: string[]): string[]{
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -90,13 +123,7 @@ export class HomeComponent implements AfterViewInit, OnInit{
     return array;
   }
 
-  protected readonly faSearch = faSearch;
-  protected readonly faStore = faStore;
-  protected readonly faChartLine = faChartLine;
-  protected readonly faDollarSign = faDollarSign;
   protected readonly faChartBar = faChartBar;
-  protected readonly faCommentDots = faCommentDots;
-  protected readonly faMessage = faMessage;
   protected readonly faHeart = faHeart;
   protected readonly faGithub = faGithub;
   protected readonly faLinkedin = faLinkedin;
