@@ -53,6 +53,10 @@ export class HomeComponent implements AfterViewInit, OnInit{
   }
 
   ngAfterViewInit() {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
     const strings = [
       "Angular",
       ".NET",

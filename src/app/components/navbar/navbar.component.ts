@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {ThemeService} from '../../services/theme.service';
 import {faMoon, faSun} from '@fortawesome/free-regular-svg-icons';
 import {NgClass} from '@angular/common';
+import {faBarsStaggered} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,11 @@ import {NgClass} from '@angular/common';
 export class NavbarComponent implements OnInit{
   isDarkMode = false;
   isScrolled = signal(false);
+  navItems = [
+    { label: 'Home', path: '/', exact: true },
+    { label: 'About', path: '/about', exact: false },
+    { label: 'Contact', path: '/contact', exact: false }
+  ];
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -36,4 +42,5 @@ export class NavbarComponent implements OnInit{
 
   protected readonly faSun = faSun;
   protected readonly faMoon = faMoon;
+  protected readonly faBarsStaggered = faBarsStaggered;
 }
