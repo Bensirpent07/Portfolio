@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, signal} from '@angular/core';
 import TypeIt from 'typeit';
-import {NgClass, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import {ThemeService} from '../../services/theme.service';
 import {Character} from 'typeit/dist/types';
 import {FaIconComponent, IconDefinition} from '@fortawesome/angular-fontawesome';
@@ -22,7 +22,7 @@ import {RouterLink} from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgForOf, NgClass, FaIconComponent, NgOptimizedImage, NgIf, RouterLink],
+  imports: [NgClass, FaIconComponent, NgOptimizedImage, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

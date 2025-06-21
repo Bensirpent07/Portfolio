@@ -15,47 +15,47 @@
             Get In Touch
             <fa-icon [icon]="faPaperPlane" class="ms-2"></fa-icon>
           </a>
-<!--          <a href="#" class="btn rounded-full mx-2">-->
-<!--            View My Work-->
-<!--            <fa-icon [icon]="faEye" class="ms-2"></fa-icon>-->
-<!--          </a>-->
-        </div>
+          <!--          <a href="#" class="btn rounded-full mx-2">-->
+          <!--            View My Work-->
+          <!--            <fa-icon [icon]="faEye" class="ms-2"></fa-icon>-->
+        <!--          </a>-->
       </div>
     </div>
-    <div class="absolute bottom-8 animate-bounce">
-      <i class="pi pi-angle-down text-white text-2xl"></i>
+  </div>
+  <div class="absolute bottom-8 animate-bounce">
+    <i class="pi pi-angle-down text-white text-2xl"></i>
+  </div>
+</section>
+<section class="w-full bg-base-100 p-10 text-center overflow-hidden py-28">
+  <p class="text-lg">Proficient with multiple languages and frameworks including...</p>
+  <h1 id="typeit-element" class="text-5xl font-bold tracking-wide text-center my-10"></h1>
+  <div class="flex justify-center mt-20 relative w-full h-32">
+    <div [ngClass]="{ 'dark': isDarkMode }" class="scroll-carousel absolute h-full w-max flex left-0">
+      @for (i of [1, 2]; track i) {
+        <img alt="Angular Logo" src="/assets/images/tech-logos/angular.svg" [ngClass]="{ 'active-logo': activeLogo == 'angular'}" class="h-full inline-block me-16" />
+        <img alt="CSS Logo" src="/assets/images/tech-logos/css.svg" [ngClass]="{ 'active-logo': activeLogo == 'css'}" class="h-full inline-block me-16" />
+        <img alt=".NET Logo" src="/assets/images/tech-logos/net.svg" [ngClass]="{ 'active-logo': activeLogo == 'net'}" class="h-full inline-block me-16" />
+        <img alt="HTML Logo" src="/assets/images/tech-logos/html.svg" [ngClass]="{ 'active-logo': activeLogo == 'html'}" class="h-full inline-block me-16" />
+        <img alt="Javascript Logo" src="/assets/images/tech-logos/javascript.svg" [ngClass]="{ 'active-logo': activeLogo == 'javascript'}" class="h-full inline-block me-16" />
+        <img alt="MYSQL Logo" src="/assets/images/tech-logos/mysql.svg" [ngClass]="{ 'active-logo': activeLogo == 'mysql'}" class="h-full inline-block me-16" />
+        <img alt="PrimeNG Logo" src="/assets/images/tech-logos/primeng.svg" [ngClass]="{ 'active-logo': activeLogo == 'primeng'}" class="h-full inline-block me-16" />
+        <img alt="TailwindCSS Logo" src="/assets/images/tech-logos/tailwindcss.svg" [ngClass]="{ 'active-logo': activeLogo == 'tailwindcss'}" class="h-full inline-block me-16" />
+        <img alt="Typescript Logo" src="/assets/images/tech-logos/typescript.svg" [ngClass]="{ 'active-logo': activeLogo == 'typescript'}" class="h-full inline-block me-16" />
+      }
     </div>
-  </section>
-  <section class="w-full bg-base-100 p-10 text-center overflow-hidden py-28">
-    <p class="text-lg">Proficient with multiple languages and frameworks including...</p>
-    <h1 id="typeit-element" class="text-5xl font-bold tracking-wide text-center my-10"></h1>
-    <div class="flex justify-center mt-20 relative w-full h-32">
-      <div [ngClass]="{ 'dark': isDarkMode }" class="scroll-carousel absolute h-full w-max flex left-0">
-        <ng-container *ngFor="let i of [1, 2]">
-          <img alt="Angular Logo" src="/assets/images/tech-logos/angular.svg" [ngClass]="{ 'active-logo': activeLogo == 'angular'}" class="h-full inline-block me-16" />
-          <img alt="CSS Logo" src="/assets/images/tech-logos/css.svg" [ngClass]="{ 'active-logo': activeLogo == 'css'}" class="h-full inline-block me-16" />
-          <img alt=".NET Logo" src="/assets/images/tech-logos/net.svg" [ngClass]="{ 'active-logo': activeLogo == 'net'}" class="h-full inline-block me-16" />
-          <img alt="HTML Logo" src="/assets/images/tech-logos/html.svg" [ngClass]="{ 'active-logo': activeLogo == 'html'}" class="h-full inline-block me-16" />
-          <img alt="Javascript Logo" src="/assets/images/tech-logos/javascript.svg" [ngClass]="{ 'active-logo': activeLogo == 'javascript'}" class="h-full inline-block me-16" />
-          <img alt="MYSQL Logo" src="/assets/images/tech-logos/mysql.svg" [ngClass]="{ 'active-logo': activeLogo == 'mysql'}" class="h-full inline-block me-16" />
-          <img alt="PrimeNG Logo" src="/assets/images/tech-logos/primeng.svg" [ngClass]="{ 'active-logo': activeLogo == 'primeng'}" class="h-full inline-block me-16" />
-          <img alt="TailwindCSS Logo" src="/assets/images/tech-logos/tailwindcss.svg" [ngClass]="{ 'active-logo': activeLogo == 'tailwindcss'}" class="h-full inline-block me-16" />
-          <img alt="Typescript Logo" src="/assets/images/tech-logos/typescript.svg" [ngClass]="{ 'active-logo': activeLogo == 'typescript'}" class="h-full inline-block me-16" />
-        </ng-container>
-      </div>
-    </div>
-  </section>
-  <section id="services" class="flex flex-col items-center py-10 bg-gradient text-gray-200">
-    <h2 class="text-3xl mb-5 font-bold tracking-wide">What I Do</h2>
-    <p class="text-lg max-w-screen-lg text-center mb-5 px-14">I’m a full stack developer focused on building fast, modern web apps — from intuitive UIs to scalable back-end systems.</p>
-    <div class="grid grid-cols-1 lg:grid-cols-2 max-w-screen-xl gap-5 px-5">
-      <div class="card card-side group bg-blue-300 text-gray-800 shadow-xl my-2 icon-bounce">
-        <figure class="w-5/12">
-          <img
-            class="transition-transform duration-300 ease-in-out group-hover:scale-110"
-            ngSrc="/assets/images/web-app-development.jpg"
-            alt="Web App Development"
-            height="427" width="640"
+  </div>
+</section>
+<section id="services" class="flex flex-col items-center py-10 bg-gradient text-gray-200">
+  <h2 class="text-3xl mb-5 font-bold tracking-wide">What I Do</h2>
+  <p class="text-lg max-w-screen-lg text-center mb-5 px-14">I’m a full stack developer focused on building fast, modern web apps — from intuitive UIs to scalable back-end systems.</p>
+  <div class="grid grid-cols-1 lg:grid-cols-2 max-w-screen-xl gap-5 px-5">
+    <div class="card card-side group bg-blue-300 text-gray-800 shadow-xl my-2 icon-bounce">
+      <figure class="w-5/12">
+        <img
+          class="transition-transform duration-300 ease-in-out group-hover:scale-110"
+          ngSrc="/assets/images/web-app-development.jpg"
+          alt="Web App Development"
+          height="427" width="640"
           >
         </figure>
         <div class="card-body w-7/12">
@@ -70,118 +70,122 @@
             ngSrc="/assets/images/api-development.jpg"
             alt="API Design"
             height="427" width="640"
-          >
-        </figure>
-        <div class="card-body w-7/12">
-          <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faMicrosoft"></fa-icon> API Design</h2>
-          <p>Create secure, scalable APIs with .NET that connect front-ends and services with clean, modern practices.</p>
-        </div>
-      </div>
-      <div class="card card-side group bg-rose-300 text-gray-800 shadow-xl my-2 icon-bounce">
-        <figure class="w-5/12">
-          <img
-            class="transition-transform duration-300 ease-in-out group-hover:scale-110"
-            ngSrc="/assets/images/database-management.jpg"
-            alt="Database Management"
-            height="427" width="640"
-          >
-        </figure>
-        <div class="card-body w-7/12">
-          <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faDatabase"></fa-icon>Database Management</h2>
-          <p>Design and optimize SQL databases for speed, scalability, and reliable performance.</p>
-        </div>
-      </div>
-      <div class="card card-side group bg-base-100 text-base-content shadow-xl my-2 animate icon-bounce">
-        <figure class="w-5/12">
-          <img
-            class="transition-transform duration-300 ease-in-out group-hover:scale-110"
-            ngSrc="/assets/images/ui-creation.jpg"
-            alt="UI/UX Design"
-            height="360" width="640"
-          >
-        </figure>
-        <div class="card-body w-7/12">
-          <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faFigma"></fa-icon>UI/UX</h2>
-          <p>Craft intuitive, user-friendly interfaces that look great and feel effortless to use.</p>
-        </div>
-      </div>
-    </div>
-    <a href="#" class="btn btn-primary rounded-full mt-10">
-      Contact Me
-      <fa-icon [icon]="faPaperPlane" class="ms-2"></fa-icon>
-    </a>
-  </section>
-  <section class="bg-base-100 text-base-content py-10">
-    <div class="max-w-screen-lg mx-auto text-center px-5">
-      <h2 class="text-3xl mb-3 font-bold tracking-wide">Results You Can Expect</h2>
-      <p class="text-lg mb-10">Here’s how a professional website drives real business results.</p>
-      <h3 class="text-2xl font-medium">What the Numbers Say</h3>
-      <div class="stats stats-vertical lg:stats-horizontal lg:grid-cols-3">
-        <div class="stat">
-          <div class="stat-title font-bold">Influence</div>
-          <div class="stat-value text-secondary">
-            <fa-icon [icon]="faBullhorn"></fa-icon>
-            97%
+            >
+          </figure>
+          <div class="card-body w-7/12">
+            <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faMicrosoft"></fa-icon> API Design</h2>
+            <p>Create secure, scalable APIs with .NET that connect front-ends and services with clean, modern practices.</p>
           </div>
-          <div class="stat-desc text-wrap">of customers say a website influences their purchasing decisions</div>
         </div>
-        <div class="stat">
-          <div class="stat-title font-bold">Trust</div>
-          <div class="stat-value text-primary">
-            <fa-icon [icon]="faHandshake"></fa-icon>
-            84%
+        <div class="card card-side group bg-rose-300 text-gray-800 shadow-xl my-2 icon-bounce">
+          <figure class="w-5/12">
+            <img
+              class="transition-transform duration-300 ease-in-out group-hover:scale-110"
+              ngSrc="/assets/images/database-management.jpg"
+              alt="Database Management"
+              height="427" width="640"
+              >
+            </figure>
+            <div class="card-body w-7/12">
+              <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faDatabase"></fa-icon>Database Management</h2>
+              <p>Design and optimize SQL databases for speed, scalability, and reliable performance.</p>
+            </div>
           </div>
-          <div class="stat-desc text-wrap">of consumers trust a business's website more than its social media</div>
-        </div>
-        <div class="stat">
-          <div class="stat-title font-bold">Revenue Growth</div>
-          <div class="stat-value text-accent">
-            <fa-icon [icon]="faChartBar"></fa-icon>
-            15 - 50%
+          <div class="card card-side group bg-base-100 text-base-content shadow-xl my-2 animate icon-bounce">
+            <figure class="w-5/12">
+              <img
+                class="transition-transform duration-300 ease-in-out group-hover:scale-110"
+                ngSrc="/assets/images/ui-creation.jpg"
+                alt="UI/UX Design"
+                height="360" width="640"
+                >
+              </figure>
+              <div class="card-body w-7/12">
+                <h2 class="card-title"><fa-icon class="text-3xl" [icon]="faFigma"></fa-icon>UI/UX</h2>
+                <p>Craft intuitive, user-friendly interfaces that look great and feel effortless to use.</p>
+              </div>
+            </div>
           </div>
-          <div class="stat-desc text-wrap">typical revenue growth for small businesses that use their websites to engage customers</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="hero bg-base-100 py-5">
-    <div class="hero-content px-10 flex-col md:flex-row gap-16 w-full max-w-7xl">
-      <div class="text-center md:text-start mb-6">
-        <h3 class="text-2xl font-bold mb-3">Let's get going</h3>
-        <p class="text-lg">
-          Ready to take your business to the next level?<br>
-          Let's build something great together.
-        </p>
-      </div>
-      <form class="w-full max-w-sm" (submit)="onFormSubmit($event)">
-        <fieldset class="fieldset border-base-300 rounded-box border p-4">
-          <legend class="fieldset-legend">Contact Form</legend>
-          <label class="label">Name</label>
-          <input name="name" type="text" placeholder="Your name" class="input validator w-full" required />
-          <div class="validator-hint hidden">Enter valid name</div>
-          <label class="label">E-Mail</label>
-          <input name="email" type="email" placeholder="Your email address" class="input validator w-full" required />
-          <div class="validator-hint hidden">Enter valid email address</div>
-          <label class="label">Message</label>
-          <textarea name="message" placeholder="Your message" class="textarea validator w-full" required></textarea>
-          <div class="validator-hint hidden">Enter valid message</div>
-          <button type="submit" class="btn btn-primary mt-4" [disabled]="isProcessing()">
-            Send Message
-            <span *ngIf="isProcessing()" class="loading loading-infinity loading-lg"></span>
-            <fa-icon *ngIf="!isProcessing()" [icon]="faPaperPlane"></fa-icon>
-          </button>
-        </fieldset>
-      </form>
-    </div>
-  </section>
-  <footer class="footer sm:footer-horizontal footer-center bg-base-200 text-base-content px-4 py-10">
-    <aside>
-      <div class="text-xl">
-        <a href="https://github.com/Bensirpent07" target="_blank" class="mx-2 hover:text-secondary transition-colors"><fa-icon [icon]="faGithub"></fa-icon></a>
-        <a href="https://www.linkedin.com/in/ben-kuhman-7773b4141" target="_blank" class="mx-2 hover:text-secondary transition-colors"><fa-icon [icon]="faLinkedin"></fa-icon></a>
-      </div>
-      <p class="text-sm">Built with <fa-icon [icon]="faHeart" class="text-red-500"></fa-icon> using Angular, TypeScript, and Tailwind CSS.</p>
-      <p class="self-center">© 2025 Ben Kuhman. All rights reserved.</p>
-    </aside>
-  </footer>
-</main>
+          <a href="#" class="btn btn-primary rounded-full mt-10">
+            Contact Me
+            <fa-icon [icon]="faPaperPlane" class="ms-2"></fa-icon>
+          </a>
+        </section>
+        <section class="bg-base-100 text-base-content py-10">
+          <div class="max-w-screen-lg mx-auto text-center px-5">
+            <h2 class="text-3xl mb-3 font-bold tracking-wide">Results You Can Expect</h2>
+            <p class="text-lg mb-10">Here’s how a professional website drives real business results.</p>
+            <h3 class="text-2xl font-medium">What the Numbers Say</h3>
+            <div class="stats stats-vertical lg:stats-horizontal lg:grid-cols-3">
+              <div class="stat">
+                <div class="stat-title font-bold">Influence</div>
+                <div class="stat-value text-secondary">
+                  <fa-icon [icon]="faBullhorn"></fa-icon>
+                  97%
+                </div>
+                <div class="stat-desc text-wrap">of customers say a website influences their purchasing decisions</div>
+              </div>
+              <div class="stat">
+                <div class="stat-title font-bold">Trust</div>
+                <div class="stat-value text-primary">
+                  <fa-icon [icon]="faHandshake"></fa-icon>
+                  84%
+                </div>
+                <div class="stat-desc text-wrap">of consumers trust a business's website more than its social media</div>
+              </div>
+              <div class="stat">
+                <div class="stat-title font-bold">Revenue Growth</div>
+                <div class="stat-value text-accent">
+                  <fa-icon [icon]="faChartBar"></fa-icon>
+                  15 - 50%
+                </div>
+                <div class="stat-desc text-wrap">typical revenue growth for small businesses that use their websites to engage customers</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="hero bg-base-100 py-5">
+          <div class="hero-content px-10 flex-col md:flex-row gap-16 w-full max-w-7xl">
+            <div class="text-center md:text-start mb-6">
+              <h3 class="text-2xl font-bold mb-3">Let's get going</h3>
+              <p class="text-lg">
+                Ready to take your business to the next level?<br>
+                Let's build something great together.
+              </p>
+            </div>
+            <form class="w-full max-w-sm" (submit)="onFormSubmit($event)">
+              <fieldset class="fieldset border-base-300 rounded-box border p-4">
+                <legend class="fieldset-legend">Contact Form</legend>
+                <label class="label">Name</label>
+                <input name="name" type="text" placeholder="Your name" class="input validator w-full" required />
+                <div class="validator-hint hidden">Enter valid name</div>
+                <label class="label">E-Mail</label>
+                <input name="email" type="email" placeholder="Your email address" class="input validator w-full" required />
+                <div class="validator-hint hidden">Enter valid email address</div>
+                <label class="label">Message</label>
+                <textarea name="message" placeholder="Your message" class="textarea validator w-full" required></textarea>
+                <div class="validator-hint hidden">Enter valid message</div>
+                <button type="submit" class="btn btn-primary mt-4" [disabled]="isProcessing()">
+                  Send Message
+                  @if (isProcessing()) {
+                    <span class="loading loading-infinity loading-lg"></span>
+                  }
+                  @if (!isProcessing()) {
+                    <fa-icon [icon]="faPaperPlane"></fa-icon>
+                  }
+                </button>
+              </fieldset>
+            </form>
+          </div>
+        </section>
+        <footer class="footer sm:footer-horizontal footer-center bg-base-200 text-base-content px-4 py-10">
+          <aside>
+            <div class="text-xl">
+              <a href="https://github.com/Bensirpent07" target="_blank" class="mx-2 hover:text-secondary transition-colors"><fa-icon [icon]="faGithub"></fa-icon></a>
+              <a href="https://www.linkedin.com/in/ben-kuhman-7773b4141" target="_blank" class="mx-2 hover:text-secondary transition-colors"><fa-icon [icon]="faLinkedin"></fa-icon></a>
+            </div>
+            <p class="text-sm">Built with <fa-icon [icon]="faHeart" class="text-red-500"></fa-icon> using Angular, TypeScript, and Tailwind CSS.</p>
+            <p class="self-center">© 2025 Ben Kuhman. All rights reserved.</p>
+          </aside>
+        </footer>
+      </main>

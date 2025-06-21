@@ -21,8 +21,12 @@
           <div class="validator-hint hidden">Enter valid message</div>
           <button type="submit" class="btn btn-primary mt-4" [disabled]="isProcessing()">
             Send Message
-            <span *ngIf="isProcessing()" class="loading loading-infinity loading-lg"></span>
-            <fa-icon *ngIf="!isProcessing()" [icon]="faPaperPlane"></fa-icon>
+            @if (isProcessing()) {
+              <span class="loading loading-infinity loading-lg"></span>
+            }
+            @if (!isProcessing()) {
+              <fa-icon [icon]="faPaperPlane"></fa-icon>
+            }
           </button>
         </fieldset>
       </form>

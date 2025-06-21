@@ -1,6 +1,6 @@
 import {Component, signal} from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
-import {NgIf} from '@angular/common';
+
 import {faCircleCheck, faCircleXmark, faPaperPlane} from '@fortawesome/free-regular-svg-icons';
 import {EmailjsService} from '../../services/emailjs.service';
 import {ToastService} from '../../services/toast.service';
@@ -10,9 +10,8 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
 @Component({
   selector: 'app-contact',
   imports: [
-    FaIconComponent,
-    NgIf
-  ],
+    FaIconComponent
+],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
