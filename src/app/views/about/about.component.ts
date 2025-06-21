@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import {faCheckCircle, faCode, faDownload, faJetFighterUp, faRocket} from '@fortawesome/free-solid-svg-icons';
+import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
 
 @Component({
   selector: 'app-about',
@@ -20,4 +21,5 @@ export class AboutComponent {
   protected readonly faRocket = faRocket;
   protected readonly faJetFighterUp = faJetFighterUp;
   protected readonly faCode = faCode;
+  protected readonly faHeart = faHeart;
 }

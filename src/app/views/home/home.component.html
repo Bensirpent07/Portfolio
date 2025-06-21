@@ -6,19 +6,19 @@
     <div class="hero-content text-neutral-content text-center relative">
       <div class="max-w-screen-lg">
         <img src="/assets/images/ben-kuhman-portrait.jpg" alt="Ben Kuhman" class="rounded-full w-48 h-48 mx-auto mb-5 shadow-lg shadow-black/50">
-        <h1 class="mb-5 text-5xl font-bold tracking-wide">Full Stack Developer.</h1>
+        <h1 class="mb-5 text-5xl font-bold tracking-wide">Full Stack Developer</h1>
         <p class="mb-5 text-gray-200">
           Bringing views to your business one line of code at a time. I am a full stack web developer with a passion for creating beautiful and functional websites. I specialize in front-end development, but I also have experience with back-end development and database management.
         </p>
         <div>
-          <a href="#" class="btn btn-primary rounded-full mx-2">
+          <a routerLink="/contact" class="btn btn-primary rounded-full mx-2">
             Get In Touch
             <fa-icon [icon]="faPaperPlane" class="ms-2"></fa-icon>
           </a>
-          <a href="#" class="btn rounded-full mx-2">
-            View My Work
-            <fa-icon [icon]="faEye" class="ms-2"></fa-icon>
-          </a>
+<!--          <a href="#" class="btn rounded-full mx-2">-->
+<!--            View My Work-->
+<!--            <fa-icon [icon]="faEye" class="ms-2"></fa-icon>-->
+<!--          </a>-->
         </div>
       </div>
     </div>
@@ -165,13 +165,11 @@
           <label class="label">Message</label>
           <textarea name="message" placeholder="Your message" class="textarea validator w-full" required></textarea>
           <div class="validator-hint hidden">Enter valid message</div>
-          <div class="form-control mt-6">
-            <button type="submit" class="btn btn-primary" [disabled]="isProcessing()">
-              Send Message
-              <span *ngIf="isProcessing()" class="loading loading-infinity loading-lg"></span>
-              <fa-icon *ngIf="!isProcessing()" [icon]="faPaperPlane"></fa-icon>
-            </button>
-          </div>
+          <button type="submit" class="btn btn-primary mt-4" [disabled]="isProcessing()">
+            Send Message
+            <span *ngIf="isProcessing()" class="loading loading-infinity loading-lg"></span>
+            <fa-icon *ngIf="!isProcessing()" [icon]="faPaperPlane"></fa-icon>
+          </button>
         </fieldset>
       </form>
     </div>

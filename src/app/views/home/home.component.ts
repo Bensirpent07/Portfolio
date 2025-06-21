@@ -17,11 +17,12 @@ import {
 import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
 import {EmailjsService} from '../../services/emailjs.service';
 import {Toast, ToastService} from '../../services/toast.service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgForOf, NgClass, FaIconComponent, NgOptimizedImage, NgIf],
+  imports: [NgForOf, NgClass, FaIconComponent, NgOptimizedImage, NgIf, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -41,7 +42,7 @@ export class HomeComponent implements AfterViewInit, OnInit{
 
   constructor(
     private themeService: ThemeService,
-    private emailJs: EmailjsService,
+    private emailJsService: EmailjsService,
     private toastsService: ToastService
   ) {}
 
@@ -98,7 +99,7 @@ export class HomeComponent implements AfterViewInit, OnInit{
       minute: '2-digit'
     });
 
-    this.emailJs.sendForm('service_ozq7f0v', 'template_mtol3gb', form)
+    this.emailJsService.sendForm('service_ozq7f0v', 'template_mtol3gb', form)
       .then(result => {
         this.toastsService.addToast('Email sent successfully!', 'success', {
           icon: faCircleCheck
