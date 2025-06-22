@@ -6,7 +6,7 @@ import {Character} from 'typeit/dist/types';
 import {FaIconComponent, IconDefinition} from '@fortawesome/angular-fontawesome';
 import {faAngular, faFigma, faGithub, faLinkedin, faMicrosoft} from '@fortawesome/free-brands-svg-icons';
 import {
-  faBullhorn, faDatabase
+  faBullhorn, faDatabase, faHeart
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faChartBar, faCircleCheck, faCircleXmark,
@@ -14,16 +14,16 @@ import {
   faHandshake,
   faPaperPlane
 } from '@fortawesome/free-regular-svg-icons';
-import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
 import {EmailjsService} from '../../services/emailjs.service';
-import {Toast, ToastService} from '../../services/toast.service';
+import {ToastService} from '../../services/toast.service';
 import {RouterLink} from '@angular/router';
 import {SlideInDirective} from '../../directives/slide-in.directive';
+import {FooterComponent} from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgClass, FaIconComponent, NgOptimizedImage, RouterLink, SlideInDirective],
+  imports: [NgClass, FaIconComponent, NgOptimizedImage, RouterLink, SlideInDirective, FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

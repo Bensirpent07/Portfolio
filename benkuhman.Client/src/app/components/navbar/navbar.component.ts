@@ -20,7 +20,8 @@ export class NavbarComponent implements OnInit{
   navItems = [
     { label: 'Home', path: '/', exact: true },
     { label: 'About', path: '/about', exact: false },
-    { label: 'Contact', path: '/contact', exact: false }
+    { label: 'Contact', path: '/contact', exact: false },
+    { label: 'AI Solutions', path: '/ai-solutions', exact: false },
   ];
 
   @HostListener('window:scroll', [])

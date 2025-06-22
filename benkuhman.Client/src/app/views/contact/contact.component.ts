@@ -2,16 +2,18 @@ import {Component, signal} from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 
 import {faCircleCheck, faCircleXmark, faPaperPlane} from '@fortawesome/free-regular-svg-icons';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import {EmailjsService} from '../../services/emailjs.service';
 import {ToastService} from '../../services/toast.service';
 import {faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
-import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
+import {FooterComponent} from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-contact',
   imports: [
-    FaIconComponent
-],
+    FaIconComponent,
+    FooterComponent
+  ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
