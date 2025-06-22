@@ -3,11 +3,13 @@ import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import {faCheckCircle, faCode, faDownload, faJetFighterUp, faRocket} from '@fortawesome/free-solid-svg-icons';
 import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
+import {SlideInDirective} from '../../directives/slide-in.directive';
 
 @Component({
   selector: 'app-about',
   imports: [
-    FaIconComponent
+    FaIconComponent,
+    SlideInDirective
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'

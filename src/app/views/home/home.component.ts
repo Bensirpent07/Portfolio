@@ -18,11 +18,12 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons/faHeart';
 import {EmailjsService} from '../../services/emailjs.service';
 import {Toast, ToastService} from '../../services/toast.service';
 import {RouterLink} from '@angular/router';
+import {SlideInDirective} from '../../directives/slide-in.directive';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgClass, FaIconComponent, NgOptimizedImage, RouterLink],
+  imports: [NgClass, FaIconComponent, NgOptimizedImage, RouterLink, SlideInDirective],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

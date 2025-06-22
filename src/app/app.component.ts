@@ -12,7 +12,7 @@ import {FaIconComponent} from '@fortawesome/angular-fontawesome';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'benkuhman';
+  title = 'Ben Kuhman';
   @ViewChild('toastTemplate') toastTemplate!: TemplateRef<any>;
 
   constructor(
