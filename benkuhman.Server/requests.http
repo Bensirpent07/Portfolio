@@ -1,5 +1,5 @@
 ﻿### Chat to AI
-POST http://localhost:7020/api/chat
+POST https://localhost:7020/api/chat/stream
 Content-Type: application/json
 
 {

@@ -25,7 +25,7 @@ interface ChatMessage {
   templateUrl: './ai-solutions.component.html',
   styleUrl: './ai-solutions.component.scss'
 })
-export class AiSolutionsComponent implements OnInit{
+export class AiSolutionsComponent{
   chatForm: FormGroup;
   chats: ChatMessage[] = [];
   isProcessing = signal(false);
@@ -40,10 +40,6 @@ export class AiSolutionsComponent implements OnInit{
       description: [''],
       challenge: ['']
     });
-  }
-
-  ngOnInit() {
-
   }
 
   getResponse(): void{

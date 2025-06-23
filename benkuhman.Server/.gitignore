@@ -20,6 +20,8 @@ obj/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea.benkuhman.Server/
+*.DotSettings.user
 
 # AWS User-specific
 .idea/**/aws.xml
