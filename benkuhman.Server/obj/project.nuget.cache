@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/qtj/qh9T94=",
+  "dgSpecHash": "foNKgpPkJTw=",
   "success": true,
   "projectFilePath": "C:\\repos\\Personal\\benkuhman.Server\\benkuhman.csproj",
   "expectedPackageFiles": [
@@ -117,7 +117,10 @@
     "C:\\Users\\benku\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\benku\\.nuget\\packages\\system.text.json\\7.0.3\\system.text.json.7.0.3.nupkg.sha512",
     "C:\\Users\\benku\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
-    "C:\\Users\\benku\\.nuget\\packages\\system.threading.tasks.dataflow\\8.0.0\\system.threading.tasks.dataflow.8.0.0.nupkg.sha512"
+    "C:\\Users\\benku\\.nuget\\packages\\system.threading.tasks.dataflow\\8.0.0\\system.threading.tasks.dataflow.8.0.0.nupkg.sha512",
+    "C:\\Users\\benku\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-x64\\9.0.6\\microsoft.netcore.app.runtime.linux-x64.9.0.6.nupkg.sha512",
+    "C:\\Users\\benku\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-x64\\9.0.6\\microsoft.aspnetcore.app.runtime.linux-x64.9.0.6.nupkg.sha512",
+    "C:\\Users\\benku\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\9.0.6\\microsoft.netcore.app.host.linux-x64.9.0.6.nupkg.sha512"
   ],
   "logs": []
 }
