@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("benkuhman-OpenAIKey")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("benkuhman")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8af443f4c2d179e52efcf29ab44cb8592168d1bb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4234e850fbe7f530ce24c70ed8e2259fb9f97fee")]
 [assembly: System.Reflection.AssemblyProductAttribute("benkuhman")]
 [assembly: System.Reflection.AssemblyTitleAttribute("benkuhman")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

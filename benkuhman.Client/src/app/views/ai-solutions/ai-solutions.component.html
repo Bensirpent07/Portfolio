@@ -1,15 +1,51 @@
 <div class="min-h-screen pt-24 flex flex-col">
-  <div class="grow w-full max-w-3xl mx-auto px-4">
-    <h1 class="text-3xl font-semibold text-center mb-10">Let AI Tell You How It Can Help Your Business</h1>
-    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-      <legend class="fieldset-legend">AI Solutions</legend>
+  <div class="grow flex flex-col w-full max-w-4xl mx-auto px-4">
+    @if (!isChatStarted()) {
+      <h1 class="text-3xl font-semibold text-center mb-10">Let AI Tell You How It Can Help Your Business</h1>
+      <fieldset [formGroup]="chatForm" class="fieldset bg-base-200 border-base-300 rounded-box border p-4">
+        <legend class="fieldset-legend">AI Solutions</legend>
 
-      <label for="description" class="label">Business Description</label>
-      <textarea name="description" class="textarea w-full" rows="4" placeholder="Describe your business in a few sentences"></textarea>
+        <label for="description" class="label">Business Description</label>
+        <textarea name="description" formControlName="description" class="textarea w-full" rows="4" placeholder="Describe your business in a few sentences"></textarea>
 
-      <label for="challenges" class="label">Challenges</label>
-      <textarea name="challenges" class="textarea w-full" rows="1" placeholder="Do you have an idea or pain point where AI might help?"></textarea>
-    </fieldset>
+        <label for="challenge" class="label">Challenges</label>
+        <textarea name="challenge" formControlName="challenge" class="textarea w-full" rows="1" placeholder="Do you have an idea or pain point where AI might help?"></textarea>
+      </fieldset>
+      <div class="flex justify-center my-6">
+        <button class="btn btn-primary rounded-full" (click)="getResponse()" [disabled]="isProcessing()">
+          <span class="me-2">Get AI Solutions</span>
+          @if (isProcessing()) {
+            <span class="loading loading-infinity loading-lg"></span>
+          }
+          @if (!isProcessing()) {
+            <fa-icon [icon]="faPaperPlane"></fa-icon>
+          }
+        </button>
+      </div>
+    }
+    @else{
+      <div class="card bg-base-200 w-full mb-10 overflow-y-auto min-h-96 grow basis-0.5">
+          <div class="card-body">
+            @if (chats.length == 0) {
+              <div class="chat chat-start">
+                <div class="chat-bubble w-32 text-center">
+                  <span class="loading loading-infinity loading-lg"></span>
+                </div>
+              </div>
+            }
+            @for (chat of chats; track $index){
+              <div class="chat" [ngClass]="{'chat-end': chat.role == 'user', 'chat-start': chat.role == 'assistant'}">
+                <div class="chat-bubble" [ngClass]="{ 'w-32': chat.content.length < 1, 'text-center': chat.content.length < 1 }">
+                  <markdown class="prose" [data]="chat.content"></markdown>
+                  @if (chat.content.length < 1) {
+                    <span class="loading loading-infinity loading-lg"></span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+      </div>
+    }
   </div>
   <app-footer></app-footer>
 </div>

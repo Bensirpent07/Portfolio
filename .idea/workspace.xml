@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="eacc501a-39f0-44f5-ab47-0a3f9bbaf6ae" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/benkuhman.Server/requests.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/MainController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/benkuhman.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/benkuhman.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/benkuhman.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/Debug/net9.0/benkuhman.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/benkuhman.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/benkuhman.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/benkuhman.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/benkuhman.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/benkuhman.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/benkuhman.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benkuhman.Server/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/benkuhman.Server/obj/rider.project.restore.info" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2yt3Ek3TdNoCeEsRGmyfbJh0aEm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-WS-251.26094.131" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eacc501a-39f0-44f5-ab47-0a3f9bbaf6ae" name="Changes" comment="" />
+      <created>1750639935303</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750639935303</updated>
+      <workItem from="1750639936884" duration="18000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

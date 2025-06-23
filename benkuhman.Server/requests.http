@@ -1,0 +1,8 @@
+﻿### Chat to AI
+POST http://localhost:7020/api/chat
+Content-Type: application/json
+
+{
+  "description": "I am the owner of a law firm and I process many court documents.",
+  "challenge": "I want to automate the extraction of key information from these documents."
+}
