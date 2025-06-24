@@ -2,9 +2,9 @@ import {Injectable, NgZone} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 
-export interface ChatPayload {
-  description: string;
-  challenge: string;
+export interface ChatMessage {
+  role: 'system' | 'user' | 'assistant';
+  content: string;
 }
 
 @Injectable({
@@ -13,14 +13,14 @@ export interface ChatPayload {
 export class OpenAiService {
   constructor(private ngZone: NgZone) {}
 
-  streamResponse(payload: ChatPayload): Observable<string> {
+  streamResponse(history: ChatMessage[]): Observable<string> {
     return new Observable<string>(observer => {
       fetch(`${environment.apiUrl}/chat/stream`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({ history })
       })
         .then(response => {
           if (!response.ok) {
