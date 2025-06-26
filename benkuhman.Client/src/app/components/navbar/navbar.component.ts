@@ -15,7 +15,7 @@ import {faBarsStaggered} from '@fortawesome/free-solid-svg-icons';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit{
-  isDarkMode = false;
+  isDarkMode = signal<boolean | undefined>(undefined);
   isScrolled = signal(false);
   navItems = [
     { label: 'Home', path: '/', exact: true },
@@ -32,13 +32,13 @@ export class NavbarComponent implements OnInit{
   constructor(private themeService: ThemeService) {}
 
   ngOnInit() {
-    this.themeService.isDarkMode$.subscribe((isDarkMode: boolean) => {
-      this.isDarkMode = isDarkMode;
+    this.themeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode.set(isDarkMode);
     });
   }
 
   toggleDarkMode() {
-    this.themeService.setDarkMode(!this.isDarkMode);
+    this.themeService.setDarkMode(!this.isDarkMode());
   }
 
   protected readonly faSun = faSun;

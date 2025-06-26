@@ -29,7 +29,7 @@ import {Meta, Title} from '@angular/platform-browser';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements AfterViewInit, OnInit{
-  isDarkMode: boolean = false;
+  isDarkMode: boolean | undefined = false;
   activeLogo: string = '';
   isProcessing = signal(false);
 
@@ -38,7 +38,6 @@ export class HomeComponent implements AfterViewInit, OnInit{
   faDatabase: IconDefinition = faDatabase;
   faFigma: IconDefinition = faFigma;
   faPaperPlane: IconDefinition = faPaperPlane;
-  faEye: IconDefinition = faEye;
   faHandshake: IconDefinition = faHandshake;
   faBullhorn: IconDefinition = faBullhorn;
 
@@ -51,7 +50,7 @@ export class HomeComponent implements AfterViewInit, OnInit{
   ) {}
 
   ngOnInit() {
-    this.themeService.isDarkMode$.subscribe((isDarkMode: boolean) => {
+    this.themeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
     });
     this.title.setTitle('Ben Kuhman');

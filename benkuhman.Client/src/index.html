@@ -12,6 +12,25 @@
   <title>Ben Kuhman</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--  Load the theme before Angular to avoid flickering -->
+  <script>
+    (function() {
+      const darkTheme = 'sunset';
+      const lightTheme = 'emerald';
+      let theme;
+      try {
+        theme = localStorage.getItem('theme');
+      } catch (e) {
+        theme = null;
+      }
+      const el = document.documentElement;
+      if (theme === darkTheme) {
+        el.setAttribute('data-theme', darkTheme);
+      } else {
+        el.setAttribute('data-theme', lightTheme);
+      }
+    })();
+  </script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
