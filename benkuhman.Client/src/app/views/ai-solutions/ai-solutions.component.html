@@ -48,7 +48,7 @@
       </form>
     }
     @else{
-      <div class="card bg-base-200 w-full mt-20 min-h-96 max-h-[calc(100vh-200px)] md:max-h-[calc(100vh-100px)]">
+      <div class="card bg-base-200 shadow-xl w-full mt-20 min-h-96 max-h-[calc(100vh-200px)] md:max-h-[calc(100vh-100px)]">
           <div class="card-body max-sm:px-1 overflow-y-auto">
             <div class="overflow-y-auto" #chatContainer>
 
@@ -77,14 +77,14 @@
                     'w-32': chat.content.length < 1,
                     'text-center': chat.content.length < 1,
                     'bg-accent': chat.role == 'user',
-                    'bg-neutral': chat.role == 'assistant'
+                    'bg-base-100': chat.role == 'assistant'
                   }"
                 >
                   <markdown
                     class="prose"
                     [ngClass]="{
                       'text-accent-content': chat.role == 'user',
-                      'text-neutral-content': chat.role == 'assistant'
+                      'text-base-content': chat.role == 'assistant'
                     }"
                     [data]="chat.content"
                   ></markdown>
