@@ -8,7 +8,7 @@ import {ToastService} from '../../services/toast.service';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {faPaperPlane, faUser} from '@fortawesome/free-regular-svg-icons';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
-import {Title} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ai-solutions',
@@ -35,7 +35,8 @@ export class AiSolutionsComponent implements OnInit{
     private aiService: OpenAiService,
     private fb: FormBuilder,
     private toastService: ToastService,
-    private title: Title
+    private title: Title,
+    private meta: Meta
   ) {
     this.chatForm = this.fb.group({
       description: ['', Validators.required],
@@ -48,6 +49,10 @@ export class AiSolutionsComponent implements OnInit{
 
   ngOnInit() {
     this.title.setTitle('AI Solutions | Ben Kuhman');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Discover how AI can solve your business challenges. Describe your business and get tailored AI solutions and advice instantly with our interactive chat.'
+    });
   }
 
   get chatBubbles(): ChatMessage[] {

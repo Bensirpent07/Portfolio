@@ -39,7 +39,7 @@
         </div>
         <div class="navbar-end items-center me-4 hidden sm:flex">
           <fa-icon class="text-lg" [icon]="faSun"></fa-icon>
-          <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode()" class="toggle bg-white mx-2" />
+          <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode()" class="toggle bg-white mx-2" aria-label="Toggle dark mode" />
           <fa-icon class="text-lg" [icon]="faMoon"></fa-icon>
         </div>
         <div class="navbar-end flex-none sm:hidden">

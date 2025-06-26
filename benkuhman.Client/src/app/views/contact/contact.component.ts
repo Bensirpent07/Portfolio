@@ -7,7 +7,7 @@ import {EmailjsService} from '../../services/emailjs.service';
 import {ToastService} from '../../services/toast.service';
 import {faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import {FooterComponent} from '../../components/footer/footer.component';
-import {Title} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -24,11 +24,16 @@ export class ContactComponent implements OnInit{
   constructor(
     private emailJsService: EmailjsService,
     private toastsService: ToastService,
-    private title: Title
+    private title: Title,
+    private meta: Meta
   ) {}
 
   ngOnInit() {
     this.title.setTitle('Contact | Ben Kuhman');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Contact me with your questions, feedback, or inquiries using my simple form. I respond promptly to all messages. Get in touch today!'
+    });
   }
 
   onFormSubmit(event: Event){

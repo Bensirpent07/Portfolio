@@ -19,7 +19,7 @@ import {ToastService} from '../../services/toast.service';
 import {RouterLink} from '@angular/router';
 import {SlideInDirective} from '../../directives/slide-in.directive';
 import {FooterComponent} from '../../components/footer/footer.component';
-import {Title} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +46,8 @@ export class HomeComponent implements AfterViewInit, OnInit{
     private themeService: ThemeService,
     private emailJsService: EmailjsService,
     private toastsService: ToastService,
-    private title: Title
+    private title: Title,
+    private meta: Meta
   ) {}
 
   ngOnInit() {
@@ -54,6 +55,10 @@ export class HomeComponent implements AfterViewInit, OnInit{
       this.isDarkMode = isDarkMode;
     });
     this.title.setTitle('Ben Kuhman');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Ben Kuhman is a full stack web developer specializing in Angular, TypeScript, and modern web technologies. Discover services in web app development, API design, database management, and UI/UX for business growth.'
+    })
   }
 
   ngAfterViewInit() {
