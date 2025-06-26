@@ -19,6 +19,7 @@ import {ToastService} from '../../services/toast.service';
 import {RouterLink} from '@angular/router';
 import {SlideInDirective} from '../../directives/slide-in.directive';
 import {FooterComponent} from '../../components/footer/footer.component';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -44,13 +45,15 @@ export class HomeComponent implements AfterViewInit, OnInit{
   constructor(
     private themeService: ThemeService,
     private emailJsService: EmailjsService,
-    private toastsService: ToastService
+    private toastsService: ToastService,
+    private title: Title
   ) {}
 
   ngOnInit() {
     this.themeService.isDarkMode$.subscribe((isDarkMode: boolean) => {
       this.isDarkMode = isDarkMode;
     });
+    this.title.setTitle('Ben Kuhman');
   }
 
   ngAfterViewInit() {

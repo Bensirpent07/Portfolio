@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 
 import {faCircleCheck, faCircleXmark, faPaperPlane} from '@fortawesome/free-regular-svg-icons';
@@ -7,6 +7,7 @@ import {EmailjsService} from '../../services/emailjs.service';
 import {ToastService} from '../../services/toast.service';
 import {faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import {FooterComponent} from '../../components/footer/footer.component';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -17,13 +18,18 @@ import {FooterComponent} from '../../components/footer/footer.component';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit{
   isProcessing = signal(false);
 
   constructor(
     private emailJsService: EmailjsService,
-    private toastsService: ToastService
+    private toastsService: ToastService,
+    private title: Title
   ) {}
+
+  ngOnInit() {
+    this.title.setTitle('Contact | Ben Kuhman');
+  }
 
   onFormSubmit(event: Event){
     this.isProcessing.set(true);

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import {faCheckCircle, faCode, faDownload, faJetFighterUp, faRocket, faHeart} from '@fortawesome/free-solid-svg-icons';
 import {SlideInDirective} from '../../directives/slide-in.directive';
 import {FooterComponent} from '../../components/footer/footer.component';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -15,7 +16,13 @@ import {FooterComponent} from '../../components/footer/footer.component';
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit{
+
+  constructor(private title: Title) {}
+
+  ngOnInit() {
+    this.title.setTitle('About | Ben Kuhman');
+  }
 
   protected readonly faLinkedin = faLinkedin;
   protected readonly faGithub = faGithub;
@@ -24,5 +31,4 @@ export class AboutComponent {
   protected readonly faRocket = faRocket;
   protected readonly faJetFighterUp = faJetFighterUp;
   protected readonly faCode = faCode;
-  protected readonly faHeart = faHeart;
 }

@@ -1,5 +1,5 @@
 import {Component, TemplateRef, ViewChild} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {ToastService} from './services/toast.service';
 import { AsyncPipe, NgClass } from '@angular/common';
@@ -11,13 +11,12 @@ import {FaIconComponent} from '@fortawesome/angular-fontawesome';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent{
   title = 'Ben Kuhman';
   @ViewChild('toastTemplate') toastTemplate!: TemplateRef<any>;
 
   constructor(
-    public toastService: ToastService
+    public toastService: ToastService,
+    private router: Router
   ) {}
-
-
 }

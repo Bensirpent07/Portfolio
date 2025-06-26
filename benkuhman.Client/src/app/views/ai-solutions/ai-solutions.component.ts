@@ -1,4 +1,4 @@
-import {Component, ElementRef, signal, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, signal, ViewChild} from '@angular/core';
 import {FooterComponent} from '../../components/footer/footer.component';
 import {ChatMessage, OpenAiService} from '../../services/open-ai.service';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -8,6 +8,7 @@ import {ToastService} from '../../services/toast.service';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {faPaperPlane, faUser} from '@fortawesome/free-regular-svg-icons';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ai-solutions',
@@ -23,7 +24,7 @@ import {faCheck} from '@fortawesome/free-solid-svg-icons';
   templateUrl: './ai-solutions.component.html',
   styleUrl: './ai-solutions.component.scss'
 })
-export class AiSolutionsComponent {
+export class AiSolutionsComponent implements OnInit{
   chatForm: FormGroup;
   followUpForm: FormGroup;
   chats = signal<ChatMessage[]>([]);
@@ -33,7 +34,8 @@ export class AiSolutionsComponent {
   constructor(
     private aiService: OpenAiService,
     private fb: FormBuilder,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private title: Title
   ) {
     this.chatForm = this.fb.group({
       description: ['', Validators.required],
@@ -42,6 +44,10 @@ export class AiSolutionsComponent {
     this.followUpForm = this.fb.group({
       userMessage: ['', Validators.required]
     });
+  }
+
+  ngOnInit() {
+    this.title.setTitle('AI Solutions | Ben Kuhman');
   }
 
   get chatBubbles(): ChatMessage[] {
