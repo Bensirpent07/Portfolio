@@ -68,7 +68,7 @@ npm test
 
 For the same noninteractive checks used in CI, run `npm run typecheck`, `npm run test:ci` (requires Chrome), and `npm run build` in `benkuhman.Client`.
 
-The server has no tests defined. CI restores, builds, and publishes `benkuhman.Server/benkuhman.Server.sln` using .NET 9. A passing server build does not imply API test coverage.
+The server has no API tests defined. CI restores and builds `benkuhman.Server/benkuhman.Server.sln` using .NET 9, then publishes a self-contained Linux x64 application. A passing server build does not imply API test coverage. Deployment and rollback checks run separately against disposable directories with mocked service and HTTP calls.
 
 ## Continuous Integration
 
@@ -77,6 +77,10 @@ GitHub Actions runs frontend typechecking, Chrome Headless tests, a production b
 The workflows follow OpenLend's read-only default permissions and cancellation of superseded PR runs. Weekly Dependabot updates cover npm, NuGet, and GitHub Actions.
 
 Repository protections are configured separately in GitHub Settings → Rules → Rulesets. Use a branch ruleset targeting `master`, with active enforcement, no bypass actors, required pull requests (zero required approvals, matching OpenLend), required status checks with up-to-date branches, linear history, blocked force pushes and deletions, and required CodeQL results at the medium-or-higher security threshold and errors-and-warnings alert threshold. Select the frontend and backend checks from the first successful CI run; check names must match GitHub's displayed names exactly.
+
+## Continuous Deployment
+
+After a push to `master` passes CI, the production job can deploy the website and self-contained API to the existing DigitalOcean Droplet. It saves backups, preserves server configuration, restarts `ai-chat.service`, checks health, and restores the previous files if deployment fails. Deployment stays disabled until the production environment secret and repository variable are configured. See [deployment setup and recovery](docs/deployment.md) for the exact GitHub and server settings.
 
 ## Contributing
 

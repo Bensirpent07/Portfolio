@@ -23,3 +23,61 @@ jobs:
       contents: read
       security-events: write
     uses: ./.github/workflows/codeql.yml
+  deploy:
+    name: Deploy to DigitalOcean
+    needs: [frontend, backend, codeql]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: production
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+      DEPLOY_USER: bensirpent07
+      DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+    steps:
+      - name: Checkout verified revision
+        uses: actions/checkout@v7
+      - name: Download website from this CI run
+        uses: actions/download-artifact@v8
+        with:
+          name: portfolio-web
+          path: release/web
+      - name: Download API from this CI run
+        uses: actions/download-artifact@v8
+        with:
+          name: portfolio-api
+          path: package
+      - name: Prepare release
+        run: |
+          mkdir -p release/api
+          tar -xzf package/portfolio-api.tar.gz -C release/api
+          test -f release/web/index.html
+          test -x release/api/benkuhman
+          tar -czf release.tar.gz -C release web api
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          test -n "$DEPLOY_SSH_KEY" || { echo 'Configure the production DEPLOY_SSH_KEY secret.'; exit 1; }
+          test -n "$DEPLOY_HOST" || { echo 'Configure the production DEPLOY_HOST secret.'; exit 1; }
+          test -n "$DEPLOY_KNOWN_HOSTS" || { echo 'Configure the production DEPLOY_KNOWN_HOSTS secret.'; exit 1; }
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+      - name: Deploy with server backup and rollback
+        env:
+          REVISION: ${{ github.sha }}
+        run: |
+          target="$DEPLOY_USER@$DEPLOY_HOST"
+          ssh_options=(-o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=15 -o IdentitiesOnly=yes)
+          remote_dir=$(ssh "${ssh_options[@]}" "$target" 'mktemp -d /tmp/portfolio-deploy.XXXXXXXX')
+          [[ "$remote_dir" =~ ^/tmp/portfolio-deploy\.[a-zA-Z0-9]+$ ]] || exit 1
+          cleanup() { ssh "${ssh_options[@]}" "$target" "rm -rf -- '$remote_dir'" || true; }
+          trap cleanup EXIT
+          scp "${ssh_options[@]}" release.tar.gz scripts/deploy.sh "$target:$remote_dir/"
+          ssh "${ssh_options[@]}" "$target" "bash '$remote_dir/deploy.sh' '$remote_dir/release.tar.gz' '$REVISION'"
+      - name: Remove runner SSH credentials
+        if: always()
+        run: rm -f ~/.ssh/id_ed25519 ~/.ssh/known_hosts
