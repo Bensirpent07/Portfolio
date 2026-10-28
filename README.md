@@ -6,7 +6,7 @@ This repository contains the source for my personal portfolio site. It's built w
 
 ### Prerequisites
 
-- **Node.js** (18 or later)
+- **Node.js 24** (the version used in CI)
 - **.NET SDK** (9.0 or later) – required if you want to run the optional server that provides AI chat features
 
 ### Clone and Install
@@ -18,7 +18,7 @@ cd Portfolio
 
 # install client dependencies
 cd benkuhman.Client
-npm install
+npm ci
 ```
 
 If you want to use the AI Solutions page you will also need to run the server:
@@ -66,7 +66,17 @@ cd benkuhman.Client
 npm test
 ```
 
-The server has no tests defined but you can run `dotnet build` to ensure it compiles.
+For the same noninteractive checks used in CI, run `npm run typecheck`, `npm run test:ci` (requires Chrome), and `npm run build` in `benkuhman.Client`.
+
+The server has no tests defined. CI restores, builds, and publishes `benkuhman.Server/benkuhman.Server.sln` using .NET 9. A passing server build does not imply API test coverage.
+
+## Continuous Integration
+
+GitHub Actions runs frontend typechecking, Chrome Headless tests, a production build, the server build, and CodeQL analysis for JavaScript/TypeScript and C# on every PR targeting `master` and on pushes to `master`. CodeQL also runs weekly. Push builds save the static website and published API as separate artifacts for seven days.
+
+The workflows follow OpenLend's read-only default permissions and cancellation of superseded PR runs. Weekly Dependabot updates cover npm, NuGet, and GitHub Actions.
+
+Repository protections are configured separately in GitHub Settings → Rules → Rulesets. Use a branch ruleset targeting `master`, with active enforcement, no bypass actors, required pull requests (zero required approvals, matching OpenLend), required status checks with up-to-date branches, linear history, blocked force pushes and deletions, and required CodeQL results at the medium-or-higher security threshold and errors-and-warnings alert threshold. Select the frontend and backend checks from the first successful CI run; check names must match GitHub's displayed names exactly.
 
 ## Contributing
 

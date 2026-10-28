@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  frontend:
+    uses: ./.github/workflows/frontend-ci.yml
+  backend:
+    uses: ./.github/workflows/backend-ci.yml
+  codeql:
+    permissions:
+      contents: read
+      security-events: write
+    uses: ./.github/workflows/codeql.yml

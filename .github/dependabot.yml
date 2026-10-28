@@ -1,0 +1,18 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /benkuhman.Client
+    schedule:
+      interval: weekly
+    groups:
+      angular:
+        patterns: ['@angular/*']
+  - package-ecosystem: nuget
+    directory: /benkuhman.Server
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
