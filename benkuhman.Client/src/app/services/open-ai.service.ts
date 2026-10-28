@@ -3,9 +3,11 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 
 export interface ChatMessage {
-  role: 'system' | 'user' | 'assistant';
+  role: 'user' | 'assistant';
   content: string;
 }
+
+export class AiChatError extends Error {}
 
 @Injectable({
   providedIn: 'root'
@@ -15,41 +17,48 @@ export class OpenAiService {
 
   streamResponse(history: ChatMessage[]): Observable<string> {
     return new Observable<string>(observer => {
-      fetch(`${environment.apiUrl}/chat/stream`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ history })
-      })
-        .then(response => {
+      const controller = new AbortController();
+      const readResponse = async () => {
+        let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
+        try {
+          const response = await fetch(`${environment.apiUrl}/chat/stream`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ history }),
+            signal: controller.signal
+          });
           if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            let message = 'AI chat is temporarily unavailable. Please try again later.';
+            try {
+              const problem = await response.json();
+              if (typeof problem.code === 'string' && problem.code.startsWith('chat_') &&
+                  typeof problem.detail === 'string') message = problem.detail;
+            } catch { /* A proxy or interrupted server may return an empty error body. */ }
+            throw new AiChatError(message);
           }
-          const reader = response.body!.getReader();
+          if (!response.body) throw new AiChatError('No AI reply was received. Please try again.');
+          reader = response.body.getReader();
           const decoder = new TextDecoder();
-
-          const readChunk = () => {
-            reader.read()
-              .then(({ done, value }) => {
-                if (done) {
-                  observer.complete();
-                  return;
-                }
-                const chunk = decoder.decode(value, { stream: true });
-                // Re-enter Angular zone so bindings update
-                this.ngZone.run(() => observer.next(chunk));
-                readChunk();
-              })
-              .catch(err => observer.error(err));
-          };
-
-          readChunk();
-        })
-        .catch(err => observer.error(err));
-
-      // Teardown: (optional) you could cancel the reader here if you track it
-      return () => { /* reader.cancel() if you kept a reference */ };
+          let hasContent = false;
+          while (!observer.closed) {
+            const { done, value } = await reader.read();
+            const chunk = done ? decoder.decode() : decoder.decode(value, { stream: true });
+            if (chunk) {
+              hasContent = true;
+              this.ngZone.run(() => observer.next(chunk));
+            }
+            if (done) break;
+          }
+          if (!hasContent) throw new AiChatError('No AI reply was received. Please try again.');
+          this.ngZone.run(() => observer.complete());
+        } catch (error) {
+          if (!observer.closed) this.ngZone.run(() => observer.error(error));
+        } finally {
+          reader?.releaseLock();
+        }
+      };
+      void readResponse();
+      return () => controller.abort();
     });
   }
 }

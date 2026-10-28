@@ -68,7 +68,9 @@ npm test
 
 For the same noninteractive checks used in CI, run `npm run typecheck`, `npm run test:ci` (requires Chrome), and `npm run build` in `benkuhman.Client`.
 
-The server has no API tests defined. CI restores and builds `benkuhman.Server/benkuhman.Server.sln` using .NET 9, then publishes a self-contained Linux x64 application. A passing server build does not imply API test coverage. Deployment and rollback checks run separately against disposable directories with mocked service and HTTP calls.
+Run the API integration tests with `dotnet test benkuhman.Server/benkuhman.Server.sln`. They use a fake OpenAI provider and require no API key or paid requests. CI runs these tests before publishing a self-contained Linux x64 application. Deployment and rollback checks run separately against disposable directories with mocked service and HTTP calls.
+
+The chat API defaults to `gpt-6-luna`, with reasoning disabled and a 600-token output limit. Set `OpenAI:Model` in server configuration to use another compatible model. Credentials remain server-side, and the API limits request history and input size.
 
 ## Continuous Integration
 
