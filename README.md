@@ -49,11 +49,11 @@ Navigate to `http://localhost:4200/` to view the site.
 
 The project shows a few patterns you can reuse in your own portfolio:
 
-- **TailwindCSS & DaisyUI** – Tailwind handles utility classes while DaisyUI provides pre-styled components. Themes are switched in `ThemeService` which toggles between `emerald` and `sunset` themes based on dark mode preference【F:benkuhman.Client/src/app/services/theme.service.ts†L1-L32】.
-- **Scroll Animations** – Elements fade and slide into view using the custom `ScrollSlideIn` directive. It applies Tailwind classes when elements intersect the viewport【F:benkuhman.Client/src/app/directives/slide-in.directive.ts†L1-L70】.
-- **Typed Hero Text** – The home page showcases rotating technology names via the TypeIt library. Strings are shuffled and looped for a dynamic effect【F:benkuhman.Client/src/app/views/home/home.component.ts†L37-L71】.
-- **EmailJS Contact Form** – `EmailjsService` lazily loads the EmailJS script and sends form submissions without a backend【F:benkuhman.Client/src/app/services/emailjs.service.ts†L1-L34】.
-- **AI Solutions Chat** – For a more advanced demo, the AI Solutions view streams responses from an ASP.NET endpoint that forwards requests to OpenAI. The prompt used for generating suggestions is defined inline in the component【F:benkuhman.Client/src/app/views/ai-solutions/ai-solutions.component.ts†L60-L110】.
+- **TailwindCSS & DaisyUI** – Tailwind handles utility classes while DaisyUI provides pre-styled components. [ThemeService](benkuhman.Client/src/app/services/theme.service.ts) switches between `emerald` and `sunset` themes based on dark mode preference.
+- **Scroll Animations** – Elements fade and slide into view using the custom [SlideInDirective](benkuhman.Client/src/app/directives/slide-in.directive.ts). It applies Tailwind classes when elements intersect the viewport.
+- **Typed Hero Text** – The [home page](benkuhman.Client/src/app/views/home/home.component.ts) showcases rotating technology names via the TypeIt library. Strings are shuffled and looped for a dynamic effect.
+- **EmailJS Contact Form** – [EmailjsService](benkuhman.Client/src/app/services/emailjs.service.ts) lazily loads the EmailJS script and sends form submissions without a backend.
+- **AI Solutions Chat** – The [AI Solutions view](benkuhman.Client/src/app/views/ai-solutions/ai-solutions.component.ts) streams responses from an ASP.NET endpoint that forwards requests to OpenAI. The prompt used for generating suggestions is defined inline in the component.
 
 Explore the component and view folders to see how DaisyUI classes are combined with Tailwind utilities to create responsive cards, stats, forms, and dark mode aware layouts.
 
@@ -74,13 +74,13 @@ The server has no API tests defined. CI restores and builds `benkuhman.Server/be
 
 GitHub Actions runs frontend typechecking, Chrome Headless tests, a production build, the server build, and CodeQL analysis for JavaScript/TypeScript and C# on every PR targeting `master` and on pushes to `master`. CodeQL also runs weekly. Push builds save the static website and published API as separate artifacts for seven days.
 
-The workflows follow OpenLend's read-only default permissions and cancellation of superseded PR runs. Weekly Dependabot updates cover npm, NuGet, and GitHub Actions.
+The workflows use read-only default permissions and cancel superseded PR runs. Weekly Dependabot updates cover npm, NuGet, and GitHub Actions.
 
-Repository protections are configured separately in GitHub Settings → Rules → Rulesets. Use a branch ruleset targeting `master`, with active enforcement, no bypass actors, required pull requests (zero required approvals, matching OpenLend), required status checks with up-to-date branches, linear history, blocked force pushes and deletions, and required CodeQL results at the medium-or-higher security threshold and errors-and-warnings alert threshold. Select the frontend and backend checks from the first successful CI run; check names must match GitHub's displayed names exactly.
+On Linux with Bash and rsync installed, run `bash scripts/test-deploy.sh` to exercise deployment and rollback behavior in disposable directories. Service restarts and HTTP calls are mocked during these checks.
 
 ## Continuous Deployment
 
-After a push to `master` passes CI, the production job can deploy the website and self-contained API to the existing DigitalOcean Droplet. It saves backups, preserves server configuration, restarts `ai-chat.service`, checks health, and restores the previous files if deployment fails. Deployment stays disabled until the production environment secret and repository variable are configured. See [deployment setup and recovery](docs/deployment.md) for the exact GitHub and server settings.
+Deployment is optional and disabled by default. After a push to `master` passes CI, the production job can deploy the website and self-contained Linux API. It saves backups, preserves server configuration, checks health, and restores the previous files if deployment fails. Forks should adapt the deployment workflow and script to their own infrastructure and supply credentials through GitHub environment secrets.
 
 ## Contributing
 
