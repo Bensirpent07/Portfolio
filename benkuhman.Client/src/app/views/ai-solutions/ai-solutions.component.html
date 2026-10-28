@@ -50,6 +50,9 @@
     @else{
       <div class="card bg-base-200 shadow-xl w-full mt-20 min-h-96 max-h-[calc(100vh-200px)] md:max-h-[calc(100vh-100px)]">
           <div class="card-body max-sm:px-1 overflow-y-auto">
+            <div class="flex justify-end">
+              <button type="button" class="btn btn-ghost btn-sm" (click)="resetChat()">Start over</button>
+            </div>
             <div class="overflow-y-auto" #chatContainer>
 
             @if (chats().length == 0) {

@@ -1,6 +1,7 @@
-import {Component, ElementRef, OnInit, signal, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, signal, ViewChild} from '@angular/core';
 import {FooterComponent} from '../../components/footer/footer.component';
-import {ChatMessage, OpenAiService} from '../../services/open-ai.service';
+import {AiChatError, ChatMessage, OpenAiService} from '../../services/open-ai.service';
+import {Subscription} from 'rxjs';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgClass, NgOptimizedImage} from '@angular/common';
 import {MarkdownComponent} from 'ngx-markdown';
@@ -24,12 +25,13 @@ import {Meta, Title} from '@angular/platform-browser';
   templateUrl: './ai-solutions.component.html',
   styleUrl: './ai-solutions.component.scss'
 })
-export class AiSolutionsComponent implements OnInit{
+export class AiSolutionsComponent implements OnInit, OnDestroy{
   chatForm: FormGroup;
   followUpForm: FormGroup;
-  chats = signal<ChatMessage[]>([]);
+  chats = signal<(ChatMessage & { failed?: boolean })[]>([]);
   isProcessing = signal(false);
   @ViewChild('chatContainer') private chatContainer!: ElementRef<HTMLElement>;
+  private chatSubscription?: Subscription;
 
   constructor(
     private aiService: OpenAiService,
@@ -56,10 +58,11 @@ export class AiSolutionsComponent implements OnInit{
   }
 
   get chatBubbles(): ChatMessage[] {
-    return this.chats().slice(2);
+    return this.chats().slice(1);
   }
 
   startChat(): void{
+    if (this.isProcessing()) return;
     this.chatForm.markAllAsTouched();
     if (this.chatForm.invalid) {
       this.toastService.addToast('Please fill in the required fields.', 'error');
@@ -67,28 +70,24 @@ export class AiSolutionsComponent implements OnInit{
     }
 
     this.isProcessing.set(true);
-    const system: ChatMessage = {
-      role: "system",
-      content: "Suggest AI solutions tailored to a business based on its description and an optional challenge or difficulty the business faces.\n\nConsider the type of business, its operations, customer interactions, and any stated challenges. Identify AI solutions that can enhance efficiency, improve customer engagement, or address specific business difficulties.\n\n# Steps\n\n1. **Understand the Business**: Analyze the provided business description to determine its main activities, industry, and goals.\n2. **Identify Challenges**: Take note of any optional challenges mentioned to understand specific areas where the business might benefit from an AI solution.\n3. **Match AI Solutions**: Suggest AI solutions that align with the business operations and address any challenges. Consider various AI domains such as automation, data analysis, customer service, etc.\n4. **Provide Justification**: Offer reasoning for each suggested AI solution, explaining how it fits the business and addresses the stated challenges.\n\n# Output Format\n\nThe response should be a structured list of 2-3 AI solutions with a brief explanation for each on how it benefits the business, formatted as follows:\n- [AI Solution Name]: [Description of how this AI solution can aid the business and address any challenges.]\n\nAt the end of the list, include a brief question or invitation to engage further, such as:\n\n- \"Would you like more suggestions for another aspect of the business?\"\n- \"Would you like suggestions based on another challenge of your business?\"\n- \"Would you like to know what others in similar businesses are doing to implement AI solutions?\"\n\n# Examples\n\n**Example 1:**\n- **Business Description**: A retail store focusing on sustainable clothing.\n- **Challenge**: Difficulty in predicting inventory needs.\n\n  **Output**:\n  - **AI-Driven Inventory Management**: Utilize AI algorithms to analyze sales data and predict inventory needs, minimizing stockouts and overstocks.\n  - **Chatbot for Customer Service**: Implement a chatbot to assist customers with queries on sustainable practices and availability of products.\n\n**Example 2:**\n- **Business Description**: A digital marketing agency that specializes in social media campaigns.\n- **Challenge**: Managing client engagements and campaign tracking.\n\n  **Output**:\n  - **AI-Powered Analytics Tools**: Employ AI to provide insights on campaign performance and optimize future strategies based on data trends.\n  - **Automated Client Reporting**: Use AI to generate real-time, automated reports for clients, improving engagement and transparency.\n\n# Notes\n\n- Ensure any suggested AI solution aligns with the business size and capability to implement such technologies.\n- Consider the potential ROI and practicality of the AI solution for the specific business scenario.\n\n# Tone\n\n- The response should use simple, friendly language that a non-technical business owner can easily understand.\n- Avoid technical jargon like \"NLP\" or \"OCR\" unless briefly explained in plain terms.\n- Aim for a helpful, conversational tone. Think of this as advice from a friendly consultant, not a technical report."
-    };
-
     const user: ChatMessage = {
       role: "user",
       content: `Business Description: ${this.chatForm.value.description}\nChallenge: ${this.chatForm.value.challenge || 'None'}`
     };
 
-    this.chats.set([system, user]);
+    this.chats.set([user]);
     this.stream();
   }
 
   sendFollowUp(): void{
+    if (this.isProcessing()) return;
     this.followUpForm.markAllAsTouched();
     if (this.followUpForm.invalid) {
       return;
     }
 
     this.isProcessing.set(true);
-    this.chats().push({ role: 'user', content: this.followUpForm.value.userMessage });
+    this.chats.update(messages => [...messages, { role: 'user', content: this.followUpForm.value.userMessage }]);
     this.followUpForm.reset();
     this.scrollToBottom();
     this.stream();
@@ -110,28 +109,56 @@ export class AiSolutionsComponent implements OnInit{
   }
 
   private stream(): void{
-    const history = [...this.chats()];
-    this.chats().push({ role: 'assistant', content: '' });
-    const assistantIndex = history.length;
+    const history = this.chats().filter(message => !message.failed)
+      .map(({ role, content }) => ({ role, content }));
+    const assistantIndex = this.chats().length;
+    this.chats.update(messages => [...messages, { role: 'assistant', content: '' }]);
 
-    this.aiService.streamResponse(history).subscribe({
+    this.chatSubscription = this.aiService.streamResponse(history).subscribe({
       next: chunk => {
-        this.chats()[assistantIndex].content += chunk;
+        this.chats.update(messages => messages.map((message, index) => index === assistantIndex
+          ? { ...message, content: message.content + chunk } : message));
         this.scrollToBottom();
       },
       error: err => {
-        this.toastService.addToast('Failed to fetch AI response. Please try again.', 'error');
-        this.isProcessing.set(false);
+        this.failReply(assistantIndex, err);
       },
       complete: () => {
+        if (!this.chats()[assistantIndex]?.content) {
+          this.failReply(assistantIndex, new AiChatError('No AI reply was received. Please try again.'));
+          return;
+        }
         this.isProcessing.set(false)
         this.scrollToBottom();
       }
     });
   }
 
+  private failReply(index: number, error: unknown): void {
+    const message = error instanceof AiChatError ? error.message
+      : 'Unable to get an AI reply. Please try again.';
+    this.chats.update(messages => messages.map((entry, entryIndex) => entryIndex === index
+      ? { ...entry, failed: true, content: entry.content
+          ? `${entry.content}\n\n_I couldn’t finish this reply. Please try again._` : message } : entry));
+    this.toastService.addToast(message, 'error');
+    this.isProcessing.set(false);
+  }
+
+  resetChat(): void {
+    this.chatSubscription?.unsubscribe();
+    this.chats.set([]);
+    this.chatForm.reset();
+    this.followUpForm.reset();
+    this.isProcessing.set(false);
+  }
+
+  ngOnDestroy(): void {
+    this.chatSubscription?.unsubscribe();
+  }
+
   private scrollToBottom(smooth = true): void{
-    const el = this.chatContainer.nativeElement;
+    const el = this.chatContainer?.nativeElement;
+    if (!el) return;
     if (smooth && 'scrollBehavior' in document.documentElement.style) {
       el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
     } else {
