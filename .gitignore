@@ -1,0 +1,41 @@
+# Local credentials and configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+!.env.sample
+!.env.*.sample
+secrets.json
+secrets.*.json
+appsettings.Local.json
+appsettings.*.Local.json
+/.ssh/
+/.aws/
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+portfolio-actions
+portfolio-actions.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.ppk
+*.keystore
+
+# Temporary deployment output
+/publish/
+/release/
+/package/
+/release.tar.gz
+/portfolio-api.tar.gz
+
+# Local scan reports and logs
+/gitleaks*.json
+/gitleaks*.sarif
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
