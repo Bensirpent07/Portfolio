@@ -1,0 +1,48 @@
+name: Backend CI
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Server
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '9.0.x'
+      - name: Restore
+        run: dotnet restore benkuhman.Server/benkuhman.Server.sln
+      - name: Build
+        run: dotnet build benkuhman.Server/benkuhman.Server.sln --configuration Release --no-restore
+      - name: Check deployment and rollback behavior
+        run: |
+          if ! command -v rsync >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install --no-install-recommends -y rsync
+          fi
+          bash scripts/test-deploy.sh
+      - name: Publish
+        run: dotnet publish benkuhman.Server/benkuhman.csproj --configuration Release --runtime linux-x64 --self-contained true --output publish
+      - name: Package API preserving executable permissions
+        if: github.event_name == 'push'
+        run: tar -czf portfolio-api.tar.gz -C publish .
+      - name: Upload API
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v7
+        with:
+          name: portfolio-api
+          path: portfolio-api.tar.gz
+          if-no-files-found: error
+          retention-days: 7

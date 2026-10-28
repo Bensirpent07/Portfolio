@@ -12,6 +12,7 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
+  protected readonly currentYear = new Date().getFullYear();
 
   protected readonly faGithub = faGithub;
   protected readonly faHeart = faHeart;

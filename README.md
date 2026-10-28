@@ -6,7 +6,7 @@ This repository contains the source for my personal portfolio site. It's built w
 
 ### Prerequisites
 
-- **Node.js** (18 or later)
+- **Node.js 24** (the version used in CI)
 - **.NET SDK** (9.0 or later) – required if you want to run the optional server that provides AI chat features
 
 ### Clone and Install
@@ -18,7 +18,7 @@ cd Portfolio
 
 # install client dependencies
 cd benkuhman.Client
-npm install
+npm ci
 ```
 
 If you want to use the AI Solutions page you will also need to run the server:
@@ -49,11 +49,11 @@ Navigate to `http://localhost:4200/` to view the site.
 
 The project shows a few patterns you can reuse in your own portfolio:
 
-- **TailwindCSS & DaisyUI** – Tailwind handles utility classes while DaisyUI provides pre-styled components. Themes are switched in `ThemeService` which toggles between `emerald` and `sunset` themes based on dark mode preference【F:benkuhman.Client/src/app/services/theme.service.ts†L1-L32】.
-- **Scroll Animations** – Elements fade and slide into view using the custom `ScrollSlideIn` directive. It applies Tailwind classes when elements intersect the viewport【F:benkuhman.Client/src/app/directives/slide-in.directive.ts†L1-L70】.
-- **Typed Hero Text** – The home page showcases rotating technology names via the TypeIt library. Strings are shuffled and looped for a dynamic effect【F:benkuhman.Client/src/app/views/home/home.component.ts†L37-L71】.
-- **EmailJS Contact Form** – `EmailjsService` lazily loads the EmailJS script and sends form submissions without a backend【F:benkuhman.Client/src/app/services/emailjs.service.ts†L1-L34】.
-- **AI Solutions Chat** – For a more advanced demo, the AI Solutions view streams responses from an ASP.NET endpoint that forwards requests to OpenAI. The prompt used for generating suggestions is defined inline in the component【F:benkuhman.Client/src/app/views/ai-solutions/ai-solutions.component.ts†L60-L110】.
+- **TailwindCSS & DaisyUI** – Tailwind handles utility classes while DaisyUI provides pre-styled components. [ThemeService](benkuhman.Client/src/app/services/theme.service.ts) switches between `emerald` and `sunset` themes based on dark mode preference.
+- **Scroll Animations** – Elements fade and slide into view using the custom [SlideInDirective](benkuhman.Client/src/app/directives/slide-in.directive.ts). It applies Tailwind classes when elements intersect the viewport.
+- **Typed Hero Text** – The [home page](benkuhman.Client/src/app/views/home/home.component.ts) showcases rotating technology names via the TypeIt library. Strings are shuffled and looped for a dynamic effect.
+- **EmailJS Contact Form** – [EmailjsService](benkuhman.Client/src/app/services/emailjs.service.ts) lazily loads the EmailJS script and sends form submissions without a backend.
+- **AI Solutions Chat** – The [AI Solutions view](benkuhman.Client/src/app/views/ai-solutions/ai-solutions.component.ts) streams responses from an ASP.NET endpoint that forwards requests to OpenAI. The prompt used for generating suggestions is defined inline in the component.
 
 Explore the component and view folders to see how DaisyUI classes are combined with Tailwind utilities to create responsive cards, stats, forms, and dark mode aware layouts.
 
@@ -66,7 +66,21 @@ cd benkuhman.Client
 npm test
 ```
 
-The server has no tests defined but you can run `dotnet build` to ensure it compiles.
+For the same noninteractive checks used in CI, run `npm run typecheck`, `npm run test:ci` (requires Chrome), and `npm run build` in `benkuhman.Client`.
+
+The server has no API tests defined. CI restores and builds `benkuhman.Server/benkuhman.Server.sln` using .NET 9, then publishes a self-contained Linux x64 application. A passing server build does not imply API test coverage. Deployment and rollback checks run separately against disposable directories with mocked service and HTTP calls.
+
+## Continuous Integration
+
+GitHub Actions runs frontend typechecking, Chrome Headless tests, a production build, the server build, and CodeQL analysis for JavaScript/TypeScript and C# on every PR targeting `master` and on pushes to `master`. CodeQL also runs weekly. Push builds save the static website and published API as separate artifacts for seven days.
+
+The workflows use read-only default permissions and cancel superseded PR runs. Weekly Dependabot updates cover npm, NuGet, and GitHub Actions.
+
+On Linux with Bash and rsync installed, run `bash scripts/test-deploy.sh` to exercise deployment and rollback behavior in disposable directories. Service restarts and HTTP calls are mocked during these checks.
+
+## Continuous Deployment
+
+Deployment is optional and disabled by default. After a push to `master` passes CI, the production job can deploy the website and self-contained Linux API. It saves backups, preserves server configuration, checks health, and restores the previous files if deployment fails. Forks should adapt the deployment workflow and script to their own infrastructure and supply credentials through GitHub environment secrets.
 
 ## Contributing
 
