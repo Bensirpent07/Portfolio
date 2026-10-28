@@ -26,6 +26,8 @@ jobs:
         run: dotnet restore benkuhman.Server/benkuhman.Server.sln
       - name: Build
         run: dotnet build benkuhman.Server/benkuhman.Server.sln --configuration Release --no-restore
+      - name: Test API with a fake OpenAI provider
+        run: dotnet test benkuhman.Server/benkuhman.Server.sln --configuration Release --no-build
       - name: Check deployment and rollback behavior
         run: |
           if ! command -v rsync >/dev/null; then

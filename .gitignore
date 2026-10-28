@@ -25,6 +25,8 @@ portfolio-actions.*
 *.keystore
 
 # Temporary deployment output
+**/bin/
+**/obj/
 /publish/
 /release/
 /package/
